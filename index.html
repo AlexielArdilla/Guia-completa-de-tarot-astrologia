@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,33 +12,55 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F8F5F1; /* Warm neutral background */
-            color: #4A4A4A; /* Dark gray for text */
+            background-color: #F8F5F1;
+            /* Warm neutral background */
+            color: #4A4A4A;
+            /* Dark gray for text */
         }
+
         .scroll-mt-24 {
-            scroll-margin-top: 6rem; /* Adjust for fixed header */
+            scroll-margin-top: 6rem;
+            /* Adjust for fixed header */
         }
-        .card-item, .suit-intro-card, .sign-card, .spread-card-placeholder, .card-placeholder {
+
+        .card-item,
+        .suit-intro-card,
+        .sign-card,
+        .spread-card-placeholder,
+        .card-placeholder {
             transition: all 0.3s ease;
             cursor: pointer;
-            border: 2px solid #D1D5DB; /* stone-300 */
+            border: 2px solid #D1D5DB;
+            /* stone-300 */
         }
-        .card-item:hover, .suit-intro-card:hover, .sign-card:hover, .spread-card-placeholder:hover, .card-placeholder:hover {
+
+        .card-item:hover,
+        .suit-intro-card:hover,
+        .sign-card:hover,
+        .spread-card-placeholder:hover,
+        .card-placeholder:hover {
             transform: translateY(-5px) scale(1.02);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            border-color: #A891D9; /* purple-400 */
+            border-color: #A891D9;
+            /* purple-400 */
         }
+
         .detail-panel {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.7s ease-out, padding 0.7s ease-out;
-            background-color: #EDE9F6; /* light purple */
-            border: 1px solid #A891D9; /* purple-400 */
+            background-color: #EDE9F6;
+            /* light purple */
+            border: 1px solid #A891D9;
+            /* purple-400 */
         }
+
         .detail-panel.active {
-            max-height: 4000px; /* Sufficiently large to show content */
+            max-height: 4000px;
+            /* Sufficiently large to show content */
             padding: 1.5rem;
         }
+
         .content-block-image-placeholder {
             width: 100%;
             height: 200px;
@@ -50,28 +73,36 @@
             border-radius: 0.5rem;
             margin-bottom: 1rem;
         }
+
         .card-image-emoji-container {
             width: 100%;
-            height: 200px; /* Fixed height for consistency */
+            height: 200px;
+            /* Fixed height for consistency */
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #E5E7EB; /* light gray */
+            background-color: #E5E7EB;
+            /* light gray */
             border-radius: 0.5rem;
         }
+
         .card-image-emoji-container span {
-            font-size: 8rem; /* Large emoji size */
+            font-size: 8rem;
+            /* Large emoji size */
             line-height: 1;
         }
-        
+
         /* --- START: Celtic Cross specific styles from Cruz celta.html --- */
         .card-placeholder.active {
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            border-color: #a891d9; /* Corresponds to purple-400 */
-            background-color: #f5f3ff; /* Corresponds to purple-50 */
+            border-color: #a891d9;
+            /* Corresponds to purple-400 */
+            background-color: #f5f3ff;
+            /* Corresponds to purple-50 */
         }
+
         .spread-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -82,158 +113,253 @@
             height: 500px;
             margin: auto;
         }
-        .card-1 { grid-column: 2 / 3; grid-row: 2 / 3; }
-        .card-2 { grid-column: 2 / 3; grid-row: 2 / 3; transform: rotate(90deg); z-index: 10; }
-        .card-3 { grid-column: 2 / 3; grid-row: 3 / 4; }
-        .card-4 { grid-column: 1 / 2; grid-row: 2 / 3; }
-        .card-5 { grid-column: 2 / 3; grid-row: 1 / 2; }
-        .card-6 { grid-column: 3 / 4; grid-row: 2 / 3; }
-        .card-7 { grid-column: 4 / 5; grid-row: 4 / 5; }
-        .card-8 { grid-column: 4 / 5; grid-row: 3 / 4; }
-        .card-9 { grid-column: 4 / 5; grid-row: 2 / 3; }
-        .card-10 { grid-column: 4 / 5; grid-row: 1 / 2; }
+
+        .card-1 {
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+        }
+
+        .card-2 {
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+            transform: rotate(90deg);
+            z-index: 10;
+        }
+
+        .card-3 {
+            grid-column: 2 / 3;
+            grid-row: 3 / 4;
+        }
+
+        .card-4 {
+            grid-column: 1 / 2;
+            grid-row: 2 / 3;
+        }
+
+        .card-5 {
+            grid-column: 2 / 3;
+            grid-row: 1 / 2;
+        }
+
+        .card-6 {
+            grid-column: 3 / 4;
+            grid-row: 2 / 3;
+        }
+
+        .card-7 {
+            grid-column: 4 / 5;
+            grid-row: 4 / 5;
+        }
+
+        .card-8 {
+            grid-column: 4 / 5;
+            grid-row: 3 / 4;
+        }
+
+        .card-9 {
+            grid-column: 4 / 5;
+            grid-row: 2 / 3;
+        }
+
+        .card-10 {
+            grid-column: 4 / 5;
+            grid-row: 1 / 2;
+        }
+
         /* --- END: Celtic Cross specific styles --- */
+        .card-image-emoji-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Esto hace que la imagen cubra todo el contenedor sin deformarse */
+            border-radius: 0.5rem;
+            /* Aplica el mismo borde redondeado que el contenedor */
+        }
     </style>
 </head>
+
 <body class="font-inter">
 
     <nav class="bg-white shadow-md fixed w-full z-50 py-4">
         <div class="container mx-auto flex flex-wrap justify-center md:justify-between items-center px-4 md:px-8">
             <a href="#" class="text-2xl font-bold text-stone-900 mb-2 md:mb-0">Guía Cósmica ✨</a>
             <div class="flex flex-wrap justify-center space-x-4 md:space-x-8 text-sm md:text-base">
-                <a href="#astrologia" class="text-stone-600 hover:text-purple-700 transition duration-300">Astrología 🌟</a>
+                <a href="#astrologia" class="text-stone-600 hover:text-purple-700 transition duration-300">Astrología
+                    🌟</a>
                 <a href="#tarot" class="text-stone-600 hover:text-purple-700 transition duration-300">Tarot 🃏</a>
-                <a href="#lectura-frio" class="text-stone-600 hover:text-purple-700 transition duration-300">Lectura en Frío 🧠</a>
+                <a href="#lectura-frio" class="text-stone-600 hover:text-purple-700 transition duration-300">Lectura en
+                    Frío 🧠</a>
             </div>
         </div>
     </nav>
 
     <div class="pt-24 container mx-auto px-4 md:px-8 py-8">
-        
+
         <section id="astrologia" class="scroll-mt-24 mb-16 md:mb-24 p-6 bg-white rounded-xl shadow-lg">
             <h2 class="text-4xl font-bold text-stone-900 mb-6">Astrología: Tu Mapa Cósmico 🌌</h2>
             <p class="text-lg text-stone-700 mb-4">
-                La astrología, una práctica milenaria, ofrece una perspectiva única sobre la conexión entre los cuerpos celestes y la vida en la Tierra. Su esencia reside en proporcionar una comprensión más profunda de la personalidad, las relaciones y los patrones de vida, funcionando como una herramienta de autoconocimiento y orientación.
+                La astrología, una práctica milenaria, ofrece una perspectiva única sobre la conexión entre los cuerpos
+                celestes y la vida en la Tierra. Su esencia reside en proporcionar una comprensión más profunda de la
+                personalidad, las relaciones y los patrones de vida, funcionando como una herramienta de
+                autoconocimiento y orientación.
             </p>
             <p class="text-lg text-stone-700 mb-4">
-                Originaria de la antigua Babilonia, la astrología se diferencia de la astronomía; mientras esta última estudia físicamente el universo, la astrología interpreta simbólicamente cómo los astros influyen en nosotros a nivel personal y colectivo.
+                Originaria de la antigua Babilonia, la astrología se diferencia de la astronomía; mientras esta última
+                estudia físicamente el universo, la astrología interpreta simbólicamente cómo los astros influyen en
+                nosotros a nivel personal y colectivo.
             </p>
-            
-            <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-8">Desmintiendo mitos comunes sobre la astrología</h3>
+
+            <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-8">Desmintiendo mitos comunes sobre la astrología
+            </h3>
             <ul class="list-disc list-inside text-lg text-stone-700 space-y-2">
-                <li><strong class="text-stone-900">Mito 1: Es una ciencia infalible.</strong> ❌ Incorrecto. Es una herramienta de análisis e interpretación simbólica, no una ciencia exacta.</li>
-                <li><strong class="text-stone-900">Mito 2: Solo sirve para leer el horóscopo.</strong>  упрощено. Los horóscopos son superficiales; la carta natal ofrece un mapa individual mucho más complejo.</li>
-                <li><strong class="text-stone-900">Mito 3: El signo solar lo define todo.</strong> Es solo una mínima parte del complejo conjunto de conocimientos astrológicos.</li>
-                <li><strong class="text-stone-900">Mito 4: La carta natal es fija e inmutable.</strong> Falso. Muestra tendencias, pero también un gran potencial de transformación.</li>
-                <li><strong class="text-stone-900">Mito 5: Personas nacidas el mismo día y lugar tienen la misma carta.</strong> Es un error. Cada carta es única y requiere hora exacta y lugar preciso de nacimiento.</li>
+                <li><strong class="text-stone-900">Mito 1: Es una ciencia infalible.</strong> ❌ Incorrecto. Es una
+                    herramienta de análisis e interpretación simbólica, no una ciencia exacta.</li>
+                <li><strong class="text-stone-900">Mito 2: Solo sirve para leer el horóscopo.</strong> упрощено. Los
+                    horóscopos son superficiales; la carta natal ofrece un mapa individual mucho más complejo.</li>
+                <li><strong class="text-stone-900">Mito 3: El signo solar lo define todo.</strong> Es solo una mínima
+                    parte del complejo conjunto de conocimientos astrológicos.</li>
+                <li><strong class="text-stone-900">Mito 4: La carta natal es fija e inmutable.</strong> Falso. Muestra
+                    tendencias, pero también un gran potencial de transformación.</li>
+                <li><strong class="text-stone-900">Mito 5: Personas nacidas el mismo día y lugar tienen la misma
+                        carta.</strong> Es un error. Cada carta es única y requiere hora exacta y lugar preciso de
+                    nacimiento.</li>
             </ul>
 
-            <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-12">Los Doce Signos del Zodíaco: Tu Esencia Solar ☀️</h3>
+            <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-12">Los Doce Signos del Zodíaco: Tu Esencia Solar
+                ☀️</h3>
             <p class="text-lg text-stone-700 mb-8">
-                Tu signo solar, determinado por la posición del Sol en el zodíaco al nacer, es tu identidad fundamental. Explora cada signo para descubrir sus características principales.
+                Tu signo solar, determinado por la posición del Sol en el zodíaco al nacer, es tu identidad fundamental.
+                Explora cada signo para descubrir sus características principales.
             </p>
 
-            <h4 class="text-xl font-semibold text-purple-700 mb-4">Los Cuatro Elementos: Fuego 🔥, Tierra 🌍, Aire 🌬️ y Agua 💧</h4>
+            <h4 class="text-xl font-semibold text-purple-700 mb-4">Los Cuatro Elementos: Fuego 🔥, Tierra 🌍, Aire 🌬️ y
+                Agua 💧</h4>
             <p class="text-lg text-stone-700 mb-4">
-                Cada signo zodiacal está asociado a uno de estos elementos, moldeando la personalidad, emociones y comportamiento.
+                Cada signo zodiacal está asociado a uno de estos elementos, moldeando la personalidad, emociones y
+                comportamiento.
             </p>
             <ul class="list-disc list-inside text-lg text-stone-700 space-y-2 mb-8">
-                <li><strong class="text-stone-900">Fuego (Aries, Leo, Sagitario):</strong> Apasionados, dinámicos, aventureros.</li>
-                <li><strong class="text-stone-900">Tierra (Tauro, Virgo, Capricornio):</strong> Realistas, prácticos, leales.</li>
-                <li><strong class="text-stone-900">Aire (Géminis, Libra, Acuario):</b> Comunicativos, intelectuales, analíticos.</li>
-                <li><strong class="text-stone-900">Agua (Cáncer, Escorpio, Piscis):</strong> Emocionales, intuitivos, sensibles.</li>
+                <li><strong class="text-stone-900">Fuego (Aries, Leo, Sagitario):</strong> Apasionados, dinámicos,
+                    aventureros.</li>
+                <li><strong class="text-stone-900">Tierra (Tauro, Virgo, Capricornio):</strong> Realistas, prácticos,
+                    leales.</li>
+                <li><strong class="text-stone-900">Aire (Géminis, Libra, Acuario):</b> Comunicativos, intelectuales,
+                        analíticos.</li>
+                <li><strong class="text-stone-900">Agua (Cáncer, Escorpio, Piscis):</strong> Emocionales, intuitivos,
+                    sensibles.</li>
             </ul>
 
-            <h4 class="text-xl font-semibold text-purple-700 mb-4">Las Tres Modalidades: Cardinal, Fijo y Mutable 🔄</h4>
+            <h4 class="text-xl font-semibold text-purple-700 mb-4">Las Tres Modalidades: Cardinal, Fijo y Mutable 🔄
+            </h4>
             <p class="text-lg text-stone-700 mb-4">
                 Las modalidades describen cómo cada signo aborda el cambio y la energía.
             </p>
             <ul class="list-disc list-inside text-lg text-stone-700 space-y-2 mb-8">
-                <li><strong class="text-stone-900">Cardinal (Aries, Cáncer, Libra, Capricornio):</strong> Iniciadores, dinámicos.</li>
-                <li><strong class="text-stone-900">Fijo (Tauro, Leo, Escorpio, Acuario):</strong> Estables, perseverantes.</li>
-                <li><strong class="text-stone-900">Mutable (Géminis, Virgo, Sagitario, Piscis):</strong> Adaptadores, flexibles.</li>
+                <li><strong class="text-stone-900">Cardinal (Aries, Cáncer, Libra, Capricornio):</strong> Iniciadores,
+                    dinámicos.</li>
+                <li><strong class="text-stone-900">Fijo (Tauro, Leo, Escorpio, Acuario):</strong> Estables,
+                    perseverantes.</li>
+                <li><strong class="text-stone-900">Mutable (Géminis, Virgo, Sagitario, Piscis):</strong> Adaptadores,
+                    flexibles.</li>
             </ul>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="sign-card bg-stone-100 p-6 rounded-xl shadow-md border border-stone-200" data-sign="aries">
-                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Aries <span class="text-sm text-stone-500">(21 Mar - 19 Abr)</span></h3>
+                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Aries <span class="text-sm text-stone-500">(21
+                            Mar - 19 Abr)</span></h3>
                     <div class="card-image-emoji-container mb-4">
                         <span role="img" aria-label="Aries symbol">♈</span>
                     </div>
                     <p class="text-stone-700 text-sm">Haz clic para más detalles</p>
                 </div>
                 <div class="sign-card bg-stone-100 p-6 rounded-xl shadow-md border border-stone-200" data-sign="tauro">
-                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Tauro <span class="text-sm text-stone-500">(20 Abr - 20 May)</span></h3>
+                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Tauro <span class="text-sm text-stone-500">(20
+                            Abr - 20 May)</span></h3>
                     <div class="card-image-emoji-container mb-4">
                         <span role="img" aria-label="Taurus symbol">♉</span>
                     </div>
                     <p class="text-stone-700 text-sm">Haz clic para más detalles</p>
                 </div>
-                <div class="sign-card bg-stone-100 p-6 rounded-xl shadow-md border border-stone-200" data-sign="geminis">
-                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Géminis <span class="text-sm text-stone-500">(21 May - 20 Jun)</span></h3>
+                <div class="sign-card bg-stone-100 p-6 rounded-xl shadow-md border border-stone-200"
+                    data-sign="geminis">
+                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Géminis <span class="text-sm text-stone-500">(21
+                            May - 20 Jun)</span></h3>
                     <div class="card-image-emoji-container mb-4">
                         <span role="img" aria-label="Gemini symbol">♊</span>
                     </div>
                     <p class="text-stone-700 text-sm">Haz clic para más detalles</p>
                 </div>
                 <div class="sign-card bg-stone-100 p-6 rounded-xl shadow-md border border-stone-200" data-sign="cancer">
-                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Cáncer <span class="text-sm text-stone-500">(21 Jun - 22 Jul)</span></h3>
+                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Cáncer <span class="text-sm text-stone-500">(21
+                            Jun - 22 Jul)</span></h3>
                     <div class="card-image-emoji-container mb-4">
                         <span role="img" aria-label="Cancer symbol">♋</span>
                     </div>
                     <p class="text-stone-700 text-sm">Haz clic para más detalles</p>
                 </div>
                 <div class="sign-card bg-stone-100 p-6 rounded-xl shadow-md border border-stone-200" data-sign="leo">
-                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Leo <span class="text-sm text-stone-500">(23 Jul - 22 Ago)</span></h3>
+                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Leo <span class="text-sm text-stone-500">(23 Jul
+                            - 22 Ago)</span></h3>
                     <div class="card-image-emoji-container mb-4">
                         <span role="img" aria-label="Leo symbol">♌</span>
                     </div>
                     <p class="text-stone-700 text-sm">Haz clic para más detalles</p>
                 </div>
                 <div class="sign-card bg-stone-100 p-6 rounded-xl shadow-md border border-stone-200" data-sign="virgo">
-                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Virgo <span class="text-sm text-stone-500">(23 Ago - 22 Sep)</span></h3>
+                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Virgo <span class="text-sm text-stone-500">(23
+                            Ago - 22 Sep)</span></h3>
                     <div class="card-image-emoji-container mb-4">
                         <span role="img" aria-label="Virgo symbol">♍</span>
                     </div>
                     <p class="text-stone-700 text-sm">Haz clic para más detalles</p>
                 </div>
                 <div class="sign-card bg-stone-100 p-6 rounded-xl shadow-md border border-stone-200" data-sign="libra">
-                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Libra <span class="text-sm text-stone-500">(23 Sep - 22 Oct)</span></h3>
+                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Libra <span class="text-sm text-stone-500">(23
+                            Sep - 22 Oct)</span></h3>
                     <div class="card-image-emoji-container mb-4">
                         <span role="img" aria-label="Libra symbol">♎</span>
                     </div>
                     <p class="text-stone-700 text-sm">Haz clic para más detalles</p>
                 </div>
-                <div class="sign-card bg-stone-100 p-6 rounded-xl shadow-md border border-stone-200" data-sign="escorpio">
-                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Escorpio <span class="text-sm text-stone-500">(23 Oct - 21 Nov)</span></h3>
+                <div class="sign-card bg-stone-100 p-6 rounded-xl shadow-md border border-stone-200"
+                    data-sign="escorpio">
+                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Escorpio <span class="text-sm text-stone-500">(23
+                            Oct - 21 Nov)</span></h3>
                     <div class="card-image-emoji-container mb-4">
                         <span role="img" aria-label="Scorpio symbol">♏</span>
                     </div>
                     <p class="text-stone-700 text-sm">Haz clic para más detalles</p>
                 </div>
-                <div class="sign-card bg-stone-100 p-6 rounded-xl shadow-md border border-stone-200" data-sign="sagitario">
-                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Sagitario <span class="text-sm text-stone-500">(22 Nov - 21 Dic)</span></h3>
+                <div class="sign-card bg-stone-100 p-6 rounded-xl shadow-md border border-stone-200"
+                    data-sign="sagitario">
+                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Sagitario <span
+                            class="text-sm text-stone-500">(22 Nov - 21 Dic)</span></h3>
                     <div class="card-image-emoji-container mb-4">
                         <span role="img" aria-label="Sagittarius symbol">♐</span>
                     </div>
                     <p class="text-stone-700 text-sm">Haz clic para más detalles</p>
                 </div>
-                <div class="sign-card bg-stone-100 p-6 rounded-xl shadow-md border border-stone-200" data-sign="capricornio">
-                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Capricornio <span class="text-sm text-stone-500">(22 Dic - 19 Ene)</span></h3>
+                <div class="sign-card bg-stone-100 p-6 rounded-xl shadow-md border border-stone-200"
+                    data-sign="capricornio">
+                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Capricornio <span
+                            class="text-sm text-stone-500">(22 Dic - 19 Ene)</span></h3>
                     <div class="card-image-emoji-container mb-4">
                         <span role="img" aria-label="Capricorn symbol">♑</span>
                     </div>
                     <p class="text-stone-700 text-sm">Haz clic para más detalles</p>
                 </div>
-                <div class="sign-card bg-stone-100 p-6 rounded-xl shadow-md border border-stone-200" data-sign="acuario">
-                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Acuario <span class="text-sm text-stone-500">(20 Ene - 18 Feb)</span></h3>
+                <div class="sign-card bg-stone-100 p-6 rounded-xl shadow-md border border-stone-200"
+                    data-sign="acuario">
+                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Acuario <span class="text-sm text-stone-500">(20
+                            Ene - 18 Feb)</span></h3>
                     <div class="card-image-emoji-container mb-4">
                         <span role="img" aria-label="Aquarius symbol">♒</span>
                     </div>
                     <p class="text-stone-700 text-sm">Haz clic para más detalles</p>
                 </div>
                 <div class="sign-card bg-stone-100 p-6 rounded-xl shadow-md border border-stone-200" data-sign="piscis">
-                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Piscis <span class="text-sm text-stone-500">(19 Feb - 20 Mar)</span></h3>
+                    <h3 class="text-2xl font-bold text-stone-900 mb-2">Piscis <span class="text-sm text-stone-500">(19
+                            Feb - 20 Mar)</span></h3>
                     <div class="card-image-emoji-container mb-4">
                         <span role="img" aria-label="Pisces symbol">♓</span>
                     </div>
@@ -250,67 +376,104 @@
                 <p id="detail-sign-positive" class="text-lg text-purple-700 mb-2"></p>
                 <p id="detail-sign-challenges" class="text-lg text-purple-700 mb-2"></p>
                 <p id="detail-sign-mythology" class="text-lg text-purple-700 mb-4"></p>
-                <div class="card-image-emoji-container w-full h-48 bg-purple-100 rounded-lg flex items-center justify-center text-purple-500 text-xl">
+                <div
+                    class="card-image-emoji-container w-full h-48 bg-purple-100 rounded-lg flex items-center justify-center text-purple-500 text-xl">
                     <span id="detail-sign-symbol" class="text-8xl"></span>
                 </div>
             </div>
 
             <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-16">El Ascendente: Tu Ventana al Mundo 🏞️</h3>
             <p class="text-lg text-stone-700 mb-4">
-                El Ascendente es el signo del Zodíaco que se encontraba en el Horizonte Este en el momento exacto de tu nacimiento. Representa tu "máscara" o el "yo" externo, la primera impresión que causas y cómo te proyectas al mundo.
+                El Ascendente es el signo del Zodíaco que se encontraba en el Horizonte Este en el momento exacto de tu
+                nacimiento. Representa tu "máscara" o el "yo" externo, la primera impresión que causas y cómo te
+                proyectas al mundo.
             </p>
             <h4 class="text-xl font-semibold text-purple-700 mb-4 mt-8">Cómo se calcula el Ascendente</h4>
             <p class="text-lg text-stone-700 mb-4">
-                Para determinarlo con precisión, es indispensable conocer la hora exacta de nacimiento, además de la fecha completa y el lugar (latitud y longitud). Incluso una pequeña variación puede alterar significativamente el signo que asciende.
+                Para determinarlo con precisión, es indispensable conocer la hora exacta de nacimiento, además de la
+                fecha completa y el lugar (latitud y longitud). Incluso una pequeña variación puede alterar
+                significativamente el signo que asciende.
             </p>
-            <h4 class="text-xl font-semibold text-purple-700 mb-4 mt-8">La influencia de cada Ascendente en la personalidad</h4>
+            <h4 class="text-xl font-semibold text-purple-700 mb-4 mt-8">La influencia de cada Ascendente en la
+                personalidad</h4>
             <div class="space-y-4 text-lg text-stone-700">
-                <p><strong class="text-stone-900">Ascendente en Aries:</strong> ♈ Proyectas una imagen fuerte, directa y segura. Percibido como líder y emprendedor, a veces impulsivo.</p>
-                <p><strong class="text-stone-900">Ascendente en Tauro:</strong> ♉ Das una impresión de dulzura, aprecio por la belleza y estabilidad. Gusto por las manualidades y el arte.</p>
-                <p><strong class="text-stone-900">Ascendente en Géminis:</strong> ♊ Se caracteriza por tu don para socializar y tu curiosidad. Comunicativo y adaptable, a veces indeciso.</p>
-                <p><strong class="text-stone-900">Ascendente en Cáncer:</strong> ♋ Percibido como cariñoso, sensible y empático. Preocupado por el bienestar de los demás.</p>
-                <p><strong class="text-stone-900">Ascendente en Leo:</strong> ♌ Llamas la atención de forma natural, irradiando luz y vitalidad. Carismático y sociable, con necesidad de ser el centro.</p>
-                <p><strong class="text-stone-900">Ascendente en Virgo:</b> ♍ Proyectas una imagen de objetivos claros, control y preocupación por la comodidad ajena. Humilde, sensible y analítico.</p>
-                <p><strong class="text-stone-900">Ascendente en Libra:</strong> ♎ Tu encanto es distintivo. Elegante, amante de la buena vida, con gran capacidad para socializar y buscar la paz.</p>
-                <p><strong class="text-stone-900">Ascendente en Escorpio:</strong> ♏ Presencia fuerte y mirada penetrante. Personalidad misteriosa e intensa, a veces con sed de venganza.</p>
-                <p><strong class="text-stone-900">Ascendente en Sagitario:</strong> ♐ Proyectas una imagen aventurera, optimista y honesta. Filosófico, enérgico, independiente y espontáneo.</p>
-                <p><strong class="text-stone-900">Ascendente en Capricornio:</strong> ♑ Te distingues por tu cordura, seriedad, responsabilidad y pasión por el orden. Motivador y disciplinado.</p>
-                <p><strong class="text-stone-900">Ascendente en Acuario:</b> ♒ Visto como original, extravagante, con pensamiento innovador y espíritu humanitario. Prefieres lo no convencional.</p>
-                <p><strong class="text-stone-900">Ascendente en Piscis:</strong> ♓ Percibido como cariñoso, sensible e intuitivo. Utilizas tu instinto para analizar problemas y adaptarte a cualquier situación.</p>
+                <p><strong class="text-stone-900">Ascendente en Aries:</strong> ♈ Proyectas una imagen fuerte, directa y
+                    segura. Percibido como líder y emprendedor, a veces impulsivo.</p>
+                <p><strong class="text-stone-900">Ascendente en Tauro:</strong> ♉ Das una impresión de dulzura, aprecio
+                    por la belleza y estabilidad. Gusto por las manualidades y el arte.</p>
+                <p><strong class="text-stone-900">Ascendente en Géminis:</strong> ♊ Se caracteriza por tu don para
+                    socializar y tu curiosidad. Comunicativo y adaptable, a veces indeciso.</p>
+                <p><strong class="text-stone-900">Ascendente en Cáncer:</strong> ♋ Percibido como cariñoso, sensible y
+                    empático. Preocupado por el bienestar de los demás.</p>
+                <p><strong class="text-stone-900">Ascendente en Leo:</strong> ♌ Llamas la atención de forma natural,
+                    irradiando luz y vitalidad. Carismático y sociable, con necesidad de ser el centro.</p>
+                <p><strong class="text-stone-900">Ascendente en Virgo:</b> ♍ Proyectas una imagen de objetivos claros,
+                        control y preocupación por la comodidad ajena. Humilde, sensible y analítico.</p>
+                <p><strong class="text-stone-900">Ascendente en Libra:</strong> ♎ Tu encanto es distintivo. Elegante,
+                    amante de la buena vida, con gran capacidad para socializar y buscar la paz.</p>
+                <p><strong class="text-stone-900">Ascendente en Escorpio:</strong> ♏ Presencia fuerte y mirada
+                    penetrante. Personalidad misteriosa e intensa, a veces con sed de venganza.</p>
+                <p><strong class="text-stone-900">Ascendente en Sagitario:</strong> ♐ Proyectas una imagen aventurera,
+                    optimista y honesta. Filosófico, enérgico, independiente y espontáneo.</p>
+                <p><strong class="text-stone-900">Ascendente en Capricornio:</strong> ♑ Te distingues por tu cordura,
+                    seriedad, responsabilidad y pasión por el orden. Motivador y disciplinado.</p>
+                <p><strong class="text-stone-900">Ascendente en Acuario:</b> ♒ Visto como original, extravagante, con
+                        pensamiento innovador y espíritu humanitario. Prefieres lo no convencional.</p>
+                <p><strong class="text-stone-900">Ascendente en Piscis:</strong> ♓ Percibido como cariñoso, sensible e
+                    intuitivo. Utilizas tu instinto para analizar problemas y adaptarte a cualquier situación.</p>
             </div>
 
-            <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-16">Astrología en la Vida Cotidiana: Más Allá del Horóscopo 🗓️</h3>
+            <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-16">Astrología en la Vida Cotidiana: Más Allá del
+                Horóscopo 🗓️</h3>
             <p class="text-lg text-stone-700 mb-4">
-                La astrología ofrece herramientas para el autoconocimiento, la comprensión de relaciones y la toma de decisiones, yendo mucho más allá de la lectura diaria del horóscopo.
+                La astrología ofrece herramientas para el autoconocimiento, la comprensión de relaciones y la toma de
+                decisiones, yendo mucho más allá de la lectura diaria del horóscopo.
             </p>
-            <h4 class="text-xl font-semibold text-purple-700 mb-4 mt-8">Horóscopos: Su rol en la cultura popular y sus limitaciones</h4>
+            <h4 class="text-xl font-semibold text-purple-700 mb-4 mt-8">Horóscopos: Su rol en la cultura popular y sus
+                limitaciones</h4>
             <p class="text-lg text-stone-700 mb-4">
-                Los horóscopos son la manifestación más visible de la astrología, ofreciendo consejos diarios o semanales. Sin embargo, brindan una "visión parcial y temporal del cielo" y son inherentemente muy generales, basándose únicamente en el signo solar.
+                Los horóscopos son la manifestación más visible de la astrología, ofreciendo consejos diarios o
+                semanales. Sin embargo, brindan una "visión parcial y temporal del cielo" y son inherentemente muy
+                generales, basándose únicamente en el signo solar.
             </p>
-            <h4 class="text-xl font-semibold text-purple-700 mb-4 mt-8">Compatibilidad Astrológica: Entendiendo tus relaciones interpersonales ❤️‍🩹</h4>
+            <h4 class="text-xl font-semibold text-purple-700 mb-4 mt-8">Compatibilidad Astrológica: Entendiendo tus
+                relaciones interpersonales ❤️‍🩹</h4>
             <p class="text-lg text-stone-700 mb-4">
-                La astrología ayuda a entender las dinámicas inherentes en las relaciones interpersonales. Se cree que algunos signos poseen una afinidad natural, mientras que otros pueden enfrentar desafíos.
+                La astrología ayuda a entender las dinámicas inherentes en las relaciones interpersonales. Se cree que
+                algunos signos poseen una afinidad natural, mientras que otros pueden enfrentar desafíos.
             </p>
-            <h4 class="text-xl font-semibold text-purple-700 mb-4 mt-8">La Carta Natal: Tu mapa personal para el autodescubrimiento 🗺️</h4>
+            <h4 class="text-xl font-semibold text-purple-700 mb-4 mt-8">La Carta Natal: Tu mapa personal para el
+                autodescubrimiento 🗺️</h4>
             <p class="text-lg text-stone-700 mb-4">
-                La carta natal, o carta astral, es el mapa más completo y personal que ofrece la astrología. Es un diagrama que ilustra la posición exacta de los planetas, los signos zodiacales y las casas astrológicas en el cielo en el momento preciso de tu nacimiento.
+                La carta natal, o carta astral, es el mapa más completo y personal que ofrece la astrología. Es un
+                diagrama que ilustra la posición exacta de los planetas, los signos zodiacales y las casas astrológicas
+                en el cielo en el momento preciso de tu nacimiento.
             </p>
-            <h4 class="text-xl font-semibold text-purple-700 mb-4 mt-8">Astrología como guía para identificar talentos, desafíos y tomar decisiones 🧭</h4>
+            <h4 class="text-xl font-semibold text-purple-700 mb-4 mt-8">Astrología como guía para identificar talentos,
+                desafíos y tomar decisiones 🧭</h4>
             <p class="text-lg text-stone-700 mb-4">
-                Más allá de la mera curiosidad, la astrología se utiliza como una herramienta práctica en la vida diaria. Puede ofrecer orientación sobre temas específicos, responder preguntas y trazar patrones o tendencias a largo plazo.
+                Más allá de la mera curiosidad, la astrología se utiliza como una herramienta práctica en la vida
+                diaria. Puede ofrecer orientación sobre temas específicos, responder preguntas y trazar patrones o
+                tendencias a largo plazo.
             </p>
         </section>
 
         <section id="tarot" class="scroll-mt-24 mb-16 md:mb-24 p-6 bg-white rounded-xl shadow-lg">
             <h2 class="text-4xl font-bold text-stone-900 mb-6">Tarot: Secretos y Guía 🃏</h2>
             <p class="text-lg text-stone-700 mb-4">
-                El Tarot es una herramienta sagrada que te ayuda a conectar con tu ser superior, guías espirituales y ancestros. Te proporcionará discernimiento, guía y respuestas sobre tu camino de vida. Un mazo tradicional consta de 78 cartas, divididas en Arcanos Mayores y Arcanos Menores. La palabra "Arcana" significa secretos o misterios.
+                El Tarot es una herramienta sagrada que te ayuda a conectar con tu ser superior, guías espirituales y
+                ancestros. Te proporcionará discernimiento, guía y respuestas sobre tu camino de vida. Un mazo
+                tradicional consta de 78 cartas, divididas en Arcanos Mayores y Arcanos Menores. La palabra "Arcana"
+                significa secretos o misterios.
             </p>
-            
-            <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-8">Asociación de Arcanos Mayores y Chakras 🧘‍♀️</h3>
+
+            <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-8">Asociación de Arcanos Mayores y Chakras 🧘‍♀️
+            </h3>
             <ul class="list-disc list-inside text-lg text-stone-700 space-y-2 mb-4">
-                <li><strong class="text-stone-900">Chakra Coronario:</strong> Conecta con el espíritu, la conciencia universal y la iluminación. ✨</li>
-                <li><strong class="text-stone-900">Chakra del Tercer Ojo:</strong> Puerta a la sabiduría interior, intuición y propósito. 👁️</li>
+                <li><strong class="text-stone-900">Chakra Coronario:</strong> Conecta con el espíritu, la conciencia
+                    universal y la iluminación. ✨</li>
+                <li><strong class="text-stone-900">Chakra del Tercer Ojo:</strong> Puerta a la sabiduría interior,
+                    intuición y propósito. 👁️</li>
             </ul>
             <div class="content-block-image-placeholder">
                 <span class="text-6xl">🧘‍♀️✨👁️</span>
@@ -318,163 +481,99 @@
 
             <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-12">Arcanos Mayores: El Viaje del Loco 🚶‍♂️</h3>
             <p class="text-lg text-stone-700 mb-8">
-                Los 22 Arcanos Mayores simbolizan el viaje del Loco, un camino de autodescubrimiento y lecciones de vida. Cada carta representa un arquetipo importante (amor, esperanza, tradición, etc.) y una lección que se puede aprender.
+                Los 22 Arcanos Mayores simbolizan el viaje del Loco, un camino de autodescubrimiento y lecciones de
+                vida. Cada carta representa un arquetipo importante (amor, esperanza, tradición, etc.) y una lección que
+                se puede aprender.
             </p>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-card="0" data-type="major">
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">0 - El Loco</h3>
-                    <div class="card-image-emoji-container mb-4">
-                        <span role="img" aria-label="El Loco emoji">🤪</span>
-                    </div>
-                    <p class="text-stone-700 text-sm">Haz clic para detalles</p>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div class="card-item bg-white p-2 rounded-lg shadow-md" data-card="0" data-type="major">
+                    <img src="cards/TheFool.png" alt="El Loco" class="w-full h-auto rounded-md">
+                    <p class="text-center text-sm font-semibold text-stone-800 mt-2">El Loco</p>
                 </div>
-                <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-card="1" data-type="major">
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">1 - El Mago</h3>
-                    <div class="card-image-emoji-container mb-4">
-                        <span role="img" aria-label="El Mago emoji">🎩</span>
-                    </div>
-                    <p class="text-stone-700 text-sm">Haz clic para detalles</p>
+                <div class="card-item bg-white p-2 rounded-lg shadow-md" data-card="1" data-type="major">
+                    <img src="cards/TheMagician.png" alt="El Mago" class="w-full h-auto rounded-md">
+                    <p class="text-center text-sm font-semibold text-stone-800 mt-2">El Mago</p>
                 </div>
-                <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-card="2" data-type="major">
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">2 - La Suma Sacerdotisa</h3>
-                    <div class="card-image-emoji-container mb-4">
-                        <span role="img" aria-label="La Sacerdotisa emoji">🤫</span>
-                    </div>
-                    <p class="text-stone-700 text-sm">Haz clic para detalles</p>
+                <div class="card-item bg-white p-2 rounded-lg shadow-md" data-card="2" data-type="major">
+                    <img src="cards/TheHighPriestess.png" alt="La Suma Sacerdotisa" class="w-full h-auto rounded-md">
+                    <p class="text-center text-sm font-semibold text-stone-800 mt-2">La Suma Sacerdotisa</p>
                 </div>
-                <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-card="3" data-type="major">
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">3 - La Emperatriz</h3>
-                    <div class="card-image-emoji-container mb-4">
-                        <span role="img" aria-label="La Emperatriz emoji">👸</span>
-                    </div>
-                    <p class="text-stone-700 text-sm">Haz clic para detalles</p>
+                <div class="card-item bg-white p-2 rounded-lg shadow-md" data-card="3" data-type="major">
+                    <img src="cards/TheEmpress.png" alt="La Emperatriz" class="w-full h-auto rounded-md">
+                    <p class="text-center text-sm font-semibold text-stone-800 mt-2">La Emperatriz</p>
                 </div>
-                <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-card="4" data-type="major">
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">4 - El Emperador</h3>
-                    <div class="card-image-emoji-container mb-4">
-                        <span role="img" aria-label="El Emperador emoji">👑</span>
-                    </div>
-                    <p class="text-stone-700 text-sm">Haz clic para detalles</p>
+                <div class="card-item bg-white p-2 rounded-lg shadow-md" data-card="4" data-type="major">
+                    <img src="cards/TheEmperor.png" alt="El Emperador" class="w-full h-auto rounded-md">
+                    <p class="text-center text-sm font-semibold text-stone-800 mt-2">El Emperador</p>
                 </div>
-                <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-card="5" data-type="major">
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">5 - El Hierofante</h3>
-                    <div class="card-image-emoji-container mb-4">
-                        <span role="img" aria-label="El Hierofante emoji">👴</span>
-                    </div>
-                    <p class="text-stone-700 text-sm">Haz clic para detalles</p>
+                <div class="card-item bg-white p-2 rounded-lg shadow-md" data-card="5" data-type="major">
+                    <img src="cards/TheHierophant.png" alt="El Hierofante" class="w-full h-auto rounded-md">
+                    <p class="text-center text-sm font-semibold text-stone-800 mt-2">El Hierofante</p>
                 </div>
-                <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-card="6" data-type="major">
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">6 - Los Enamorados</h3>
-                    <div class="card-image-emoji-container mb-4">
-                        <span role="img" aria-label="Los Enamorados emoji">💞</span>
-                    </div>
-                    <p class="text-stone-700 text-sm">Haz clic para detalles</p>
+                <div class="card-item bg-white p-2 rounded-lg shadow-md" data-card="6" data-type="major">
+                    <img src="cards/TheLovers.png" alt="Los Enamorados" class="w-full h-auto rounded-md">
+                    <p class="text-center text-sm font-semibold text-stone-800 mt-2">Los Enamorados</p>
                 </div>
-                <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-card="7" data-type="major">
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">7 - El Carro</h3>
-                    <div class="card-image-emoji-container mb-4">
-                        <span role="img" aria-label="El Carro emoji">🐎</span>
-                    </div>
-                    <p class="text-stone-700 text-sm">Haz clic para detalles</p>
+                <div class="card-item bg-white p-2 rounded-lg shadow-md" data-card="7" data-type="major">
+                    <img src="cards/TheChariot.png" alt="El Carro" class="w-full h-auto rounded-md">
+                    <p class="text-center text-sm font-semibold text-stone-800 mt-2">El Carro</p>
                 </div>
-                <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-card="8" data-type="major">
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">8 - La Fuerza</h3>
-                    <div class="card-image-emoji-container mb-4">
-                        <span role="img" aria-label="La Fuerza emoji">💪</span>
-                    </div>
-                    <p class="text-stone-700 text-sm">Haz clic para detalles</p>
+                <div class="card-item bg-white p-2 rounded-lg shadow-md" data-card="8" data-type="major">
+                    <img src="cards/Strength.png" alt="La Fuerza" class="w-full h-auto rounded-md">
+                    <p class="text-center text-sm font-semibold text-stone-800 mt-2">La Fuerza</p>
                 </div>
-                <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-card="9" data-type="major">
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">9 - El Ermitaño</h3>
-                    <div class="card-image-emoji-container mb-4">
-                        <span role="img" aria-label="El Ermitaño emoji">🧘‍♂️</span>
-                    </div>
-                    <p class="text-stone-700 text-sm">Haz clic para detalles</p>
+                <div class="card-item bg-white p-2 rounded-lg shadow-md" data-card="9" data-type="major">
+                    <img src="cards/TheHermit.png" alt="El Ermitaño" class="w-full h-auto rounded-md">
+                    <p class="text-center text-sm font-semibold text-stone-800 mt-2">El Ermitaño</p>
                 </div>
-                <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-card="10" data-type="major">
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">10 - La Rueda de la Fortuna</h3>
-                    <div class="card-image-emoji-container mb-4">
-                        <span role="img" aria-label="La Rueda de la Fortuna emoji">🎡</span>
-                    </div>
-                    <p class="text-stone-700 text-sm">Haz clic para detalles</p>
+                <div class="card-item bg-white p-2 rounded-lg shadow-md" data-card="10" data-type="major">
+                    <img src="cards/WheelOfFortune.png" alt="La Rueda de la Fortuna" class="w-full h-auto rounded-md">
+                    <p class="text-center text-sm font-semibold text-stone-800 mt-2">La Rueda de la Fortuna</p>
                 </div>
-                <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-card="11" data-type="major">
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">11 - La Justicia</h3>
-                    <div class="card-image-emoji-container mb-4">
-                        <span role="img" aria-label="La Justicia emoji">⚖️</span>
-                    </div>
-                    <p class="text-stone-700 text-sm">Haz clic para detalles</p>
+                <div class="card-item bg-white p-2 rounded-lg shadow-md" data-card="11" data-type="major">
+                    <img src="cards/Justice.png" alt="La Justicia" class="w-full h-auto rounded-md">
+                    <p class="text-center text-sm font-semibold text-stone-800 mt-2">La Justicia</p>
                 </div>
-                <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-card="12" data-type="major">
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">12 - El Colgado</h3>
-                    <div class="card-image-emoji-container mb-4">
-                        <span role="img" aria-label="El Colgado emoji">🙃</span>
-                    </div>
-                    <p class="text-stone-700 text-sm">Haz clic para detalles</p>
+                <div class="card-item bg-white p-2 rounded-lg shadow-md" data-card="12" data-type="major">
+                    <img src="cards/TheHangedMan.png" alt="El Colgado" class="w-full h-auto rounded-md">
+                    <p class="text-center text-sm font-semibold text-stone-800 mt-2">El Colgado</p>
                 </div>
-                <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-card="13" data-type="major">
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">13 - La Muerte</h3>
-                    <div class="card-image-emoji-container mb-4">
-                        <span role="img" aria-label="La Muerte emoji">💀</span>
-                    </div>
-                    <p class="text-stone-700 text-sm">Haz clic para detalles</p>
+                <div class="card-item bg-white p-2 rounded-lg shadow-md" data-card="13" data-type="major">
+                    <img src="cards/Death.png" alt="La Muerte" class="w-full h-auto rounded-md">
+                    <p class="text-center text-sm font-semibold text-stone-800 mt-2">La Muerte</p>
                 </div>
-                <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-card="14" data-type="major">
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">14 - La Templanza</h3>
-                    <div class="card-image-emoji-container mb-4">
-                        <span role="img" aria-label="La Templanza emoji">🕊️</span>
-                    </div>
-                    <p class="text-stone-700 text-sm">Haz clic para detalles</p>
+                <div class="card-item bg-white p-2 rounded-lg shadow-md" data-card="14" data-type="major">
+                    <img src="cards/Temperance.png" alt="La Templanza" class="w-full h-auto rounded-md">
+                    <p class="text-center text-sm font-semibold text-stone-800 mt-2">La Templanza</p>
                 </div>
-                <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-card="15" data-type="major">
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">15 - El Diablo</h3>
-                    <div class="card-image-emoji-container mb-4">
-                        <span role="img" aria-label="El Diablo emoji">😈</span>
-                    </div>
-                    <p class="text-stone-700 text-sm">Haz clic para detalles</p>
+                <div class="card-item bg-white p-2 rounded-lg shadow-md" data-card="15" data-type="major">
+                    <img src="cards/TheDevil.png" alt="El Diablo" class="w-full h-auto rounded-md">
+                    <p class="text-center text-sm font-semibold text-stone-800 mt-2">El Diablo</p>
                 </div>
-                <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-card="16" data-type="major">
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">16 - La Torre</h3>
-                    <div class="card-image-emoji-container mb-4">
-                        <span role="img" aria-label="La Torre emoji">⚡️</span>
-                    </div>
-                    <p class="text-stone-700 text-sm">Haz clic para detalles</p>
+                <div class="card-item bg-white p-2 rounded-lg shadow-md" data-card="16" data-type="major">
+                    <img src="cards/TheTower.png" alt="La Torre" class="w-full h-auto rounded-md">
+                    <p class="text-center text-sm font-semibold text-stone-800 mt-2">La Torre</p>
                 </div>
-                <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-card="17" data-type="major">
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">17 - La Estrella</h3>
-                    <div class="card-image-emoji-container mb-4">
-                        <span role="img" aria-label="La Estrella emoji">🌟</span>
-                    </div>
-                    <p class="text-stone-700 text-sm">Haz clic para detalles</p>
+                <div class="card-item bg-white p-2 rounded-lg shadow-md" data-card="17" data-type="major">
+                    <img src="cards/TheStar.png" alt="La Estrella" class="w-full h-auto rounded-md">
+                    <p class="text-center text-sm font-semibold text-stone-800 mt-2">La Estrella</p>
                 </div>
-                <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-card="18" data-type="major">
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">18 - La Luna</h3>
-                    <div class="card-image-emoji-container mb-4">
-                        <span role="img" aria-label="La Luna emoji">🌙</span>
-                    </div>
-                    <p class="text-stone-700 text-sm">Haz clic para detalles</p>
+                <div class="card-item bg-white p-2 rounded-lg shadow-md" data-card="18" data-type="major">
+                    <img src="cards/TheMoon.png" alt="La Luna" class="w-full h-auto rounded-md">
+                    <p class="text-center text-sm font-semibold text-stone-800 mt-2">La Luna</p>
                 </div>
-                <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-card="19" data-type="major">
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">19 - El Sol</h3>
-                    <div class="card-image-emoji-container mb-4">
-                        <span role="img" aria-label="El Sol emoji">☀️</span>
-                    </div>
-                    <p class="text-stone-700 text-sm">Haz clic para detalles</p>
+                <div class="card-item bg-white p-2 rounded-lg shadow-md" data-card="19" data-type="major">
+                    <img src="cards/TheSun.png" alt="El Sol" class="w-full h-auto rounded-md">
+                    <p class="text-center text-sm font-semibold text-stone-800 mt-2">El Sol</p>
                 </div>
-                <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-card="20" data-type="major">
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">20 - El Juicio</h3>
-                    <div class="card-image-emoji-container mb-4">
-                        <span role="img" aria-label="El Juicio emoji">🎺</span>
-                    </div>
-                    <p class="text-stone-700 text-sm">Haz clic para detalles</p>
+                <div class="card-item bg-white p-2 rounded-lg shadow-md" data-card="20" data-type="major">
+                    <img src="cards/Judgement.png" alt="El Juicio" class="w-full h-auto rounded-md">
+                    <p class="text-center text-sm font-semibold text-stone-800 mt-2">El Juicio</p>
                 </div>
-                <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-card="21" data-type="major">
-                    <h3 class="text-xl font-bold text-stone-900 mb-2">21 - El Mundo</h3>
-                    <div class="card-image-emoji-container mb-4">
-                        <span role="img" aria-label="El Mundo emoji">🌐</span>
-                    </div>
-                    <p class="text-stone-700 text-sm">Haz clic para detalles</p>
+                <div class="card-item bg-white p-2 rounded-lg shadow-md" data-card="21" data-type="major">
+                    <img src="cards/TheWorld.png" alt="El Mundo" class="w-full h-auto rounded-md">
+                    <p class="text-center text-sm font-semibold text-stone-800 mt-2">El Mundo</p>
                 </div>
             </div>
 
@@ -486,48 +585,58 @@
                 </div>
                 <p id="major-detail-planetary-sign" class="text-lg text-purple-700 mb-2"></p>
                 <p id="major-detail-yes-no" class="text-lg text-purple-700 mb-4"></p>
-                
+
                 <div class="flex space-x-4 mb-4">
-                    <button id="major-upright-btn" class="px-5 py-2 rounded-lg bg-purple-700 text-white font-semibold hover:bg-purple-800 transition duration-300">Derecha</button>
-                    <button id="major-reversed-btn" class="px-5 py-2 rounded-lg bg-stone-300 text-stone-800 font-semibold hover:bg-stone-400 transition duration-300">Invertida</button>
+                    <button id="major-upright-btn"
+                        class="px-5 py-2 rounded-lg bg-purple-700 text-white font-semibold hover:bg-purple-800 transition duration-300">Derecha</button>
+                    <button id="major-reversed-btn"
+                        class="px-5 py-2 rounded-lg bg-stone-300 text-stone-800 font-semibold hover:bg-stone-400 transition duration-300">Invertida</button>
                 </div>
-                
+
                 <h4 class="text-2xl font-bold text-purple-900 mb-3" id="major-meaning-type">Significado:</h4>
                 <p id="major-detail-description" class="text-lg text-stone-700 leading-relaxed mb-4"></p>
                 <p id="major-detail-keywords" class="text-lg text-stone-700 leading-relaxed"></p>
                 <p id="major-detail-hero-journey" class="text-lg text-stone-700 leading-relaxed mt-4"></p>
-                <p id="major-detail-commentary" class="text-lg text-stone-700 italic border-l-4 border-purple-500 pl-4 py-2 mt-4"></p>
+                <p id="major-detail-commentary"
+                    class="text-lg text-stone-700 italic border-l-4 border-purple-500 pl-4 py-2 mt-4"></p>
             </div>
 
-            <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-16">Arcanos Menores: Los Detalles de la Vida 🌟</h3>
+            <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-16">Arcanos Menores: Los Detalles de la Vida 🌟
+            </h3>
             <p class="text-lg text-stone-700 mb-8">
-                Los 56 Arcanos Menores se dividen en 4 Palos: Bastos, Espadas, Copas y Pentáculos. Cada Palo tiene 14 cartas (del 1 al 10 y 4 cartas de la Corte: Rey, Reina, Caballero y Paje). Cada palo representa un elemento, características, signos astrológicos, rasgos de personalidad y tiempo.
+                Los 56 Arcanos Menores se dividen en 4 Palos: Bastos, Espadas, Copas y Pentáculos. Cada Palo tiene 14
+                cartas (del 1 al 10 y 4 cartas de la Corte: Rey, Reina, Caballero y Paje). Cada palo representa un
+                elemento, características, signos astrológicos, rasgos de personalidad y tiempo.
             </p>
 
             <h4 class="text-xl font-semibold text-purple-700 mb-4">Los Cuatro Palos 📊</h4>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                <div class="suit-intro-card bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-suit="wands">
+                <div class="suit-intro-card bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200"
+                    data-suit="wands">
                     <h5 class="text-xl font-bold text-stone-900 mb-2">Bastos 🔥</h5>
                     <div class="card-image-emoji-container mb-4">
                         <span role="img" aria-label="Bastos emoji">🪵</span>
                     </div>
                     <p class="text-stone-700 text-sm">Elemento: Fuego. Pasión, energía creativa, inspiración.</p>
                 </div>
-                <div class="suit-intro-card bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-suit="swords">
+                <div class="suit-intro-card bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200"
+                    data-suit="swords">
                     <h5 class="text-xl font-bold text-stone-900 mb-2">Espadas 🌬️</h5>
                     <div class="card-image-emoji-container mb-4">
                         <span role="img" aria-label="Espadas emoji">🗡️</span>
                     </div>
                     <p class="text-stone-700 text-sm">Elemento: Aire. Mente, lógica, intelecto, decisiones.</p>
                 </div>
-                <div class="suit-intro-card bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-suit="cups">
+                <div class="suit-intro-card bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200"
+                    data-suit="cups">
                     <h5 class="text-xl font-bold text-stone-900 mb-2">Copas 💧</h5>
                     <div class="card-image-emoji-container mb-4">
                         <span role="img" aria-label="Copas emoji">컵</span>
                     </div>
                     <p class="text-stone-700 text-sm">Elemento: Agua. Emoción, relaciones, intuición, afecto.</p>
                 </div>
-                <div class="suit-intro-card bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-suit="pentacles">
+                <div class="suit-intro-card bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200"
+                    data-suit="pentacles">
                     <h5 class="text-xl font-bold text-stone-900 mb-2">Pentáculos 🌎</h5>
                     <div class="card-image-emoji-container mb-4">
                         <span role="img" aria-label="Pentáculos emoji">🪙</span>
@@ -548,55 +657,76 @@
             <div class="space-y-12 mt-12">
                 <div class="suit-section" id="wands-cards-section">
                     <h4 class="text-2xl font-bold text-stone-900 mb-4">Cartas del Palo de Bastos 🔥</h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cards-grid hidden" data-suit-grid="wands">
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="as-bastos" data-type="minor">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cards-grid hidden"
+                        data-suit-grid="wands">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="as-bastos"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">As de Bastos</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="As de Bastos emoji">1️⃣🔥</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="As de Bastos emoji">1️⃣🔥</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="dos-bastos" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="dos-bastos"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Dos de Bastos</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Dos de Bastos emoji">2️⃣🔥</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Dos de Bastos emoji">2️⃣🔥</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="tres-bastos" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="tres-bastos"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Tres de Bastos</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Tres de Bastos emoji">3️⃣🔥</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Tres de Bastos emoji">3️⃣🔥</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="cuatro-bastos" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="cuatro-bastos"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Cuatro de Bastos</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Cuatro de Bastos emoji">4️⃣🔥</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Cuatro de Bastos emoji">4️⃣🔥</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="cinco-bastos" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="cinco-bastos"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Cinco de Bastos</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Cinco de Bastos emoji">5️⃣🔥</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Cinco de Bastos emoji">5️⃣🔥</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="seis-bastos" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="seis-bastos"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Seis de Bastos</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Seis de Bastos emoji">6️⃣🔥</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Seis de Bastos emoji">6️⃣🔥</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="siete-bastos" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="siete-bastos"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Siete de Bastos</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Siete de Bastos emoji">7️⃣🔥</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Siete de Bastos emoji">7️⃣🔥</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="ocho-bastos" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="ocho-bastos"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Ocho de Bastos</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Ocho de Bastos emoji">8️⃣🔥</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Ocho de Bastos emoji">8️⃣🔥</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="nueve-bastos" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="nueve-bastos"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Nueve de Bastos</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Nueve de Bastos emoji">9️⃣🔥</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Nueve de Bastos emoji">9️⃣🔥</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="diez-bastos" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="diez-bastos"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Diez de Bastos</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Diez de Bastos emoji">🔟🔥</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Diez de Bastos emoji">🔟🔥</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
                     </div>
@@ -604,55 +734,76 @@
 
                 <div class="suit-section" id="cups-cards-section">
                     <h4 class="text-2xl font-bold text-stone-900 mb-4">Cartas del Palo de Copas 💧</h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cards-grid hidden" data-suit-grid="cups">
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="as-copas" data-type="minor">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cards-grid hidden"
+                        data-suit-grid="cups">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="as-copas"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">As de Copas</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="As de Copas emoji">1️⃣💧</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="As de Copas emoji">1️⃣💧</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="dos-copas" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="dos-copas"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Dos de Copas</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Dos de Copas emoji">2️⃣💧</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Dos de Copas emoji">2️⃣💧</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="tres-copas" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="tres-copas"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Tres de Copas</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Tres de Copas emoji">3️⃣💧</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Tres de Copas emoji">3️⃣💧</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="cuatro-copas" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="cuatro-copas"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Cuatro de Copas</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Cuatro de Copas emoji">4️⃣💧</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Cuatro de Copas emoji">4️⃣💧</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="cinco-copas" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="cinco-copas"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Cinco de Copas</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Cinco de Copas emoji">5️⃣💧</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Cinco de Copas emoji">5️⃣💧</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="seis-copas" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="seis-copas"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Seis de Copas</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Seis de Copas emoji">6️⃣💧</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Seis de Copas emoji">6️⃣💧</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="siete-copas" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="siete-copas"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Siete de Copas</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Siete de Copas emoji">7️⃣💧</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Siete de Copas emoji">7️⃣💧</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="ocho-copas" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="ocho-copas"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Ocho de Copas</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Ocho de Copas emoji">8️⃣💧</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Ocho de Copas emoji">8️⃣💧</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="nueve-copas" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="nueve-copas"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Nueve de Copas</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Nueve de Copas emoji">9️⃣💧</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Nueve de Copas emoji">9️⃣💧</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="diez-copas" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="diez-copas"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Diez de Copas</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Diez de Copas emoji">🔟💧</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Diez de Copas emoji">🔟💧</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
                     </div>
@@ -660,55 +811,76 @@
 
                 <div class="suit-section" id="swords-cards-section">
                     <h4 class="text-2xl font-bold text-stone-900 mb-4">Cartas del Palo de Espadas 🌬️</h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cards-grid hidden" data-suit-grid="swords">
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="as-espadas" data-type="minor">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cards-grid hidden"
+                        data-suit-grid="swords">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="as-espadas"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">As de Espadas</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="As de Espadas emoji">1️⃣🗡️</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="As de Espadas emoji">1️⃣🗡️</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="dos-espadas" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="dos-espadas"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Dos de Espadas</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Dos de Espadas emoji">2️⃣🗡️</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Dos de Espadas emoji">2️⃣🗡️</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="tres-espadas" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="tres-espadas"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Tres de Espadas</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Tres de Espadas emoji">3️⃣🗡️</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Tres de Espadas emoji">3️⃣🗡️</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="cuatro-espadas" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="cuatro-espadas"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Cuatro de Espadas</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Cuatro de Espadas emoji">4️⃣🗡️</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Cuatro de Espadas emoji">4️⃣🗡️</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="cinco-espadas" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="cinco-espadas"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Cinco de Espadas</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Cinco de Espadas emoji">5️⃣🗡️</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Cinco de Espadas emoji">5️⃣🗡️</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="seis-espadas" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="seis-espadas"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Seis de Espadas</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Seis de Espadas emoji">6️⃣🗡️</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Seis de Espadas emoji">6️⃣🗡️</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="siete-espadas" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="siete-espadas"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Siete de Espadas</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Siete de Espadas emoji">7️⃣🗡️</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Siete de Espadas emoji">7️⃣🗡️</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="ocho-espadas" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="ocho-espadas"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Ocho de Espadas</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Ocho de Espadas emoji">8️⃣🗡️</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Ocho de Espadas emoji">8️⃣🗡️</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="nueve-espadas" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="nueve-espadas"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Nueve de Espadas</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Nueve de Espadas emoji">9️⃣🗡️</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Nueve de Espadas emoji">9️⃣🗡️</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="diez-espadas" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="diez-espadas"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Diez de Espadas</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Diez de Espadas emoji">🔟🗡️</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Diez de Espadas emoji">🔟🗡️</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
                     </div>
@@ -716,55 +888,76 @@
 
                 <div class="suit-section" id="pentacles-cards-section">
                     <h4 class="text-2xl font-bold text-stone-900 mb-4">Cartas del Palo de Pentáculos 🌎</h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cards-grid hidden" data-suit-grid="pentacles">
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="as-oros" data-type="minor">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cards-grid hidden"
+                        data-suit-grid="pentacles">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="as-oros"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">As de Oros</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="As de Oros emoji">1️⃣🪙</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="As de Oros emoji">1️⃣🪙</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="dos-oros" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="dos-oros"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Dos de Oros</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Dos de Oros emoji">2️⃣🪙</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Dos de Oros emoji">2️⃣🪙</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="tres-oros" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="tres-oros"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Tres de Oros</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Tres de Oros emoji">3️⃣🪙</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Tres de Oros emoji">3️⃣🪙</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="cuatro-oros" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="cuatro-oros"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Cuatro de Oros</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Cuatro de Oros emoji">4️⃣🪙</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Cuatro de Oros emoji">4️⃣🪙</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="cinco-oros" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="cinco-oros"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Cinco de Oros</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Cinco de Oros emoji">5️⃣🪙</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Cinco de Oros emoji">5️⃣🪙</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="seis-oros" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="seis-oros"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Seis de Oros</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Seis de Oros emoji">6️⃣🪙</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Seis de Oros emoji">6️⃣🪙</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="siete-oros" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="siete-oros"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Siete de Oros</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Siete de Oros emoji">7️⃣🪙</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Siete de Oros emoji">7️⃣🪙</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="ocho-oros" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="ocho-oros"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Ocho de Oros</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Ocho de Oros emoji">8️⃣🪙</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Ocho de Oros emoji">8️⃣🪙</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="nueve-oros" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="nueve-oros"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Nueve de Oros</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Nueve de Oros emoji">9️⃣🪙</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Nueve de Oros emoji">9️⃣🪙</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
-                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="diez-oros" data-type="minor">
+                        <div class="card-item bg-stone-100 p-4 rounded-xl shadow-md" data-card="diez-oros"
+                            data-type="minor">
                             <h5 class="text-xl font-bold text-stone-900 mb-2">Diez de Oros</h5>
-                            <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Diez de Oros emoji">🔟🪙</span></div>
+                            <div class="card-image-emoji-container mb-4"><span role="img"
+                                    aria-label="Diez de Oros emoji">🔟🪙</span></div>
                             <p class="text-stone-700 text-sm">Haz clic para detalles</p>
                         </div>
                     </div>
@@ -779,44 +972,55 @@
                 </div>
                 <p id="minor-detail-planetary-sign" class="text-lg text-purple-700 mb-2"></p>
                 <p id="minor-detail-yes-no" class="text-lg text-purple-700 mb-4"></p>
-                
+
                 <div class="flex space-x-4 mb-4">
-                    <button id="minor-upright-btn" class="px-5 py-2 rounded-lg bg-purple-700 text-white font-semibold hover:bg-purple-800 transition duration-300">Derecha</button>
-                    <button id="minor-reversed-btn" class="px-5 py-2 rounded-lg bg-stone-300 text-stone-800 font-semibold hover:bg-stone-400 transition duration-300">Invertida</button>
+                    <button id="minor-upright-btn"
+                        class="px-5 py-2 rounded-lg bg-purple-700 text-white font-semibold hover:bg-purple-800 transition duration-300">Derecha</button>
+                    <button id="minor-reversed-btn"
+                        class="px-5 py-2 rounded-lg bg-stone-300 text-stone-800 font-semibold hover:bg-stone-400 transition duration-300">Invertida</button>
                 </div>
-                
+
                 <h4 class="text-2xl font-bold text-purple-900 mb-3" id="minor-meaning-type">Significado:</h4>
                 <p id="minor-detail-description" class="text-lg text-stone-700 leading-relaxed mb-4"></p>
                 <p id="minor-detail-keywords" class="text-lg text-stone-700 leading-relaxed"></p>
                 <p id="minor-detail-hero-journey" class="text-lg text-stone-700 leading-relaxed mt-4"></p>
-                <p id="minor-detail-commentary" class="text-lg text-stone-700 italic border-l-4 border-purple-500 pl-4 py-2 mt-4"></p>
+                <p id="minor-detail-commentary"
+                    class="text-lg text-stone-700 italic border-l-4 border-purple-500 pl-4 py-2 mt-4"></p>
             </div>
 
 
             <h4 class="text-xl font-semibold text-purple-700 mb-4 mt-12">Las Cartas de la Corte 🧑‍⚖️</h4>
             <p class="text-lg text-stone-700 mb-8">
-                Hay 16 cartas de la Corte. Representan personas, situaciones, eventos, lecciones o formas de pensar. No representan el género, sino las energías femeninas o masculinas y la madurez emocional.
+                Hay 16 cartas de la Corte. Representan personas, situaciones, eventos, lecciones o formas de pensar. No
+                representan el género, sino las energías femeninas o masculinas y la madurez emocional.
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="suit-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-court="pages">
                     <h5 class="text-xl font-bold text-stone-900 mb-2">Pajes 🧒</h5>
-                    <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Paje emoji">👦</span></div>
-                    <p class="text-stone-700 text-sm">Representan niños, adolescentes o adultos jóvenes. Etapas tempranas, aprendizaje.</p>
+                    <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Paje emoji">👦</span>
+                    </div>
+                    <p class="text-stone-700 text-sm">Representan niños, adolescentes o adultos jóvenes. Etapas
+                        tempranas, aprendizaje.</p>
                 </div>
-                <div class="suit-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-court="knights">
+                <div class="suit-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200"
+                    data-court="knights">
                     <h5 class="text-xl font-bold text-stone-900 mb-2">Caballeros 🏇</h5>
-                    <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Caballero emoji">🏇</span></div>
+                    <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Caballero emoji">🏇</span>
+                    </div>
                     <p class="text-stone-700 text-sm">Jóvenes adultos, acción, movimiento, traen noticias y cambios.</p>
                 </div>
-                <div class="suit-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-court="queens">
+                <div class="suit-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200"
+                    data-court="queens">
                     <h5 class="text-xl font-bold text-stone-900 mb-2">Reinas 👸</h5>
-                    <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Reina emoji">👸</span></div>
+                    <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Reina emoji">👸</span>
+                    </div>
                     <p class="text-stone-700 text-sm">Adultas con energía femenina. Maduras, poderosas, protectoras.</p>
                 </div>
                 <div class="suit-item bg-stone-100 p-4 rounded-xl shadow-md border border-stone-200" data-court="kings">
                     <h5 class="text-xl font-bold text-stone-900 mb-2">Reyes 🤴</h5>
                     <div class="card-image-emoji-container mb-4"><span role="img" aria-label="Rey emoji">🤴</span></div>
-                    <p class="text-stone-700 text-sm">Adultos con energía masculina. Estabilidad, protección, capacidad.</p>
+                    <p class="text-stone-700 text-sm">Adultos con energía masculina. Estabilidad, protección, capacidad.
+                    </p>
                 </div>
             </div>
 
@@ -829,29 +1033,34 @@
                 <p id="detail-court-timing" class="text-lg text-purple-700 mt-4"></p>
             </div>
 
-            <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-16">Tiradas de Tarot: Guía para tus Lecturas 🔮</h3>
+            <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-16">Tiradas de Tarot: Guía para tus Lecturas 🔮
+            </h3>
             <p class="text-lg text-stone-700 mb-8">
-                Las tiradas de tarot te ayudan a entender y conectar con la lectura, clarificando la respuesta a tu pregunta.
+                Las tiradas de tarot te ayudan a entender y conectar con la lectura, clarificando la respuesta a tu
+                pregunta.
             </p>
 
             <h4 class="text-xl font-semibold text-purple-700 mb-4 mt-8">Preparación para la Lectura de Tarot 🕯️</h4>
             <ul class="list-disc list-inside text-lg text-stone-700 space-y-2 mb-4">
                 <li>Asegúrate de estar en un estado mental positivo y tranquilo. 🧘‍♀️</li>
                 <li>Limpia tu espacio y tus cartas con incienso o humo. 🌬️</li>
-                <li>Medita de 2 a 5 minutos. Pide asistencia a tus guías espirituales y protección a tus ángeles. 🙏</li>
+                <li>Medita de 2 a 5 minutos. Pide asistencia a tus guías espirituales y protección a tus ángeles. 🙏
+                </li>
                 <li>Puedes colocar un vaso de agua o encender una vela blanca para atraer energías positivas. 💧🕯️</li>
                 <li>Mantén tu mazo de tarot en un área limpia y respetable. 📦</li>
-                <li>Siempre se recomienda colocar las cartas sobre un paño limpio.  ผ้า</li>
+                <li>Siempre se recomienda colocar las cartas sobre un paño limpio. ผ้า</li>
             </ul>
 
             <h4 class="text-xl font-semibold text-purple-700 mb-4 mt-8">Barajado y Elección de Cartas 🖐️</h4>
             <p class="text-lg text-stone-700 mb-4">
-                El acto de barajar infunde energía en las cartas y las limpia. Confiar en tu intuición es clave para una lectura precisa.
+                El acto de barajar infunde energía en las cartas y las limpia. Confiar en tu intuición es clave para una
+                lectura precisa.
             </p>
             <ul class="list-disc list-inside text-lg text-stone-700 space-y-2 mb-4">
                 <li>Puedes barajar hasta que una o más cartas salgan volando del mazo. 🃏💨</li>
                 <li>Otra forma es cortar el mazo en partes y luego sacar las cartas una por una. 🔪</li>
-                <li>La <strong class="text-stone-900">Tirada en Abanico</strong> es una forma sencilla de extender las cartas boca abajo y elegir las que te sientas más atraído. 🌬️🃏</li>
+                <li>La <strong class="text-stone-900">Tirada en Abanico</strong> es una forma sencilla de extender las
+                    cartas boca abajo y elegir las que te sientas más atraído. 🌬️🃏</li>
             </ul>
             <div class="content-block-image-placeholder">
                 <span class="text-6xl">✨🖐️</span>
@@ -865,7 +1074,9 @@
                         Perfecta para una reflexión diaria o una respuesta concisa a una pregunta sencilla.
                     </p>
                     <div class="flex justify-center my-4">
-                        <div class="w-24 h-32 bg-stone-200 rounded-lg flex items-center justify-center text-stone-500 font-bold text-4xl">1️⃣</div>
+                        <div
+                            class="w-24 h-32 bg-stone-200 rounded-lg flex items-center justify-center text-stone-500 font-bold text-4xl">
+                            1️⃣</div>
                     </div>
                 </div>
 
@@ -881,9 +1092,15 @@
                         <li><strong>Relaciones:</strong> Tú 🧍‍♂️ - Ellos 🧍‍♀️ - La Relación ❤️</li>
                     </ul>
                     <div class="flex justify-center space-x-4 my-4">
-                        <div class="w-24 h-32 bg-stone-200 rounded-lg flex items-center justify-center text-stone-500 font-bold text-4xl">1️⃣</div>
-                        <div class="w-24 h-32 bg-stone-200 rounded-lg flex items-center justify-center text-stone-500 font-bold text-4xl">2️⃣</div>
-                        <div class="w-24 h-32 bg-stone-200 rounded-lg flex items-center justify-center text-stone-500 font-bold text-4xl">3️⃣</div>
+                        <div
+                            class="w-24 h-32 bg-stone-200 rounded-lg flex items-center justify-center text-stone-500 font-bold text-4xl">
+                            1️⃣</div>
+                        <div
+                            class="w-24 h-32 bg-stone-200 rounded-lg flex items-center justify-center text-stone-500 font-bold text-4xl">
+                            2️⃣</div>
+                        <div
+                            class="w-24 h-32 bg-stone-200 rounded-lg flex items-center justify-center text-stone-500 font-bold text-4xl">
+                            3️⃣</div>
                     </div>
                 </div>
 
@@ -893,107 +1110,201 @@
                         Una fila adicional de tres cartas para una comprensión más profunda de la fila superior.
                     </p>
                     <div class="flex justify-center space-x-4 flex-wrap my-4">
-                        <div class="w-24 h-32 bg-stone-200 rounded-lg flex items-center justify-center text-stone-500 font-bold text-4xl mb-4">1️⃣</div>
-                        <div class="w-24 h-32 bg-stone-200 rounded-lg flex items-center justify-center text-stone-500 font-bold text-4xl mb-4">2️⃣</div>
-                        <div class="w-24 h-32 bg-stone-200 rounded-lg flex items-center justify-center text-stone-500 font-bold text-4xl mb-4">3️⃣</div>
-                        <div class="w-24 h-32 bg-stone-200 rounded-lg flex items-center justify-center text-stone-500 font-bold text-4xl">4️⃣</div>
-                        <div class="w-24 h-32 bg-stone-200 rounded-lg flex items-center justify-center text-stone-500 font-bold text-4xl">5️⃣</div>
-                        <div class="w-24 h-32 bg-stone-200 rounded-lg flex items-center justify-center text-stone-500 font-bold text-4xl">6️⃣</div>
+                        <div
+                            class="w-24 h-32 bg-stone-200 rounded-lg flex items-center justify-center text-stone-500 font-bold text-4xl mb-4">
+                            1️⃣</div>
+                        <div
+                            class="w-24 h-32 bg-stone-200 rounded-lg flex items-center justify-center text-stone-500 font-bold text-4xl mb-4">
+                            2️⃣</div>
+                        <div
+                            class="w-24 h-32 bg-stone-200 rounded-lg flex items-center justify-center text-stone-500 font-bold text-4xl mb-4">
+                            3️⃣</div>
+                        <div
+                            class="w-24 h-32 bg-stone-200 rounded-lg flex items-center justify-center text-stone-500 font-bold text-4xl">
+                            4️⃣</div>
+                        <div
+                            class="w-24 h-32 bg-stone-200 rounded-lg flex items-center justify-center text-stone-500 font-bold text-4xl">
+                            5️⃣</div>
+                        <div
+                            class="w-24 h-32 bg-stone-200 rounded-lg flex items-center justify-center text-stone-500 font-bold text-4xl">
+                            6️⃣</div>
                     </div>
                 </div>
 
                 <div class="bg-stone-100 p-6 rounded-xl shadow-sm border border-stone-200">
                     <h5 class="text-xl font-bold text-stone-900 mb-2">La Cruz Celta ➕</h5>
                     <p class="text-lg text-stone-700 mb-4">
-                        Una de las tiradas más populares y profundas, con 10 cartas que exploran diferentes facetas de una situación. Haz clic en las posiciones para ver su significado.
+                        Una de las tiradas más populares y profundas, con 10 cartas que exploran diferentes facetas de
+                        una situación. Haz clic en las posiciones para ver su significado.
                     </p>
-                    
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center mt-8">
-            
+
                         <div class="flex items-center justify-center">
                             <div class="spread-container">
-                                <div data-id="5" class="card-placeholder card-5 border-2 border-stone-300 bg-stone-200 rounded-lg flex items-center justify-center font-bold text-2xl text-stone-500">5</div>
-                                <div data-id="4" class="card-placeholder card-4 border-2 border-stone-300 bg-stone-200 rounded-lg flex items-center justify-center font-bold text-2xl text-stone-500">4</div>
-                                <div data-id="1" class="card-placeholder card-1 border-2 border-stone-300 bg-stone-200 rounded-lg flex items-center justify-center font-bold text-2xl text-stone-500">1</div>
-                                <div data-id="2" class="card-placeholder card-2 border-2 border-stone-300 bg-stone-200 rounded-lg flex items-center justify-center font-bold text-2xl text-stone-500">2</div>
-                                <div data-id="6" class="card-placeholder card-6 border-2 border-stone-300 bg-stone-200 rounded-lg flex items-center justify-center font-bold text-2xl text-stone-500">6</div>
-                                <div data-id="3" class="card-placeholder card-3 border-2 border-stone-300 bg-stone-200 rounded-lg flex items-center justify-center font-bold text-2xl text-stone-500">3</div>
-                                <div data-id="10" class="card-placeholder card-10 border-2 border-stone-300 bg-stone-200 rounded-lg flex items-center justify-center font-bold text-2xl text-stone-500">10</div>
-                                <div data-id="9" class="card-placeholder card-9 border-2 border-stone-300 bg-stone-200 rounded-lg flex items-center justify-center font-bold text-2xl text-stone-500">9</div>
-                                <div data-id="8" class="card-placeholder card-8 border-2 border-stone-300 bg-stone-200 rounded-lg flex items-center justify-center font-bold text-2xl text-stone-500">8</div>
-                                <div data-id="7" class="card-placeholder card-7 border-2 border-stone-300 bg-stone-200 rounded-lg flex items-center justify-center font-bold text-2xl text-stone-500">7</div>
+                                <div data-id="5"
+                                    class="card-placeholder card-5 border-2 border-stone-300 bg-stone-200 rounded-lg flex items-center justify-center font-bold text-2xl text-stone-500">
+                                    5</div>
+                                <div data-id="4"
+                                    class="card-placeholder card-4 border-2 border-stone-300 bg-stone-200 rounded-lg flex items-center justify-center font-bold text-2xl text-stone-500">
+                                    4</div>
+                                <div data-id="1"
+                                    class="card-placeholder card-1 border-2 border-stone-300 bg-stone-200 rounded-lg flex items-center justify-center font-bold text-2xl text-stone-500">
+                                    1</div>
+                                <div data-id="2"
+                                    class="card-placeholder card-2 border-2 border-stone-300 bg-stone-200 rounded-lg flex items-center justify-center font-bold text-2xl text-stone-500">
+                                    2</div>
+                                <div data-id="6"
+                                    class="card-placeholder card-6 border-2 border-stone-300 bg-stone-200 rounded-lg flex items-center justify-center font-bold text-2xl text-stone-500">
+                                    6</div>
+                                <div data-id="3"
+                                    class="card-placeholder card-3 border-2 border-stone-300 bg-stone-200 rounded-lg flex items-center justify-center font-bold text-2xl text-stone-500">
+                                    3</div>
+                                <div data-id="10"
+                                    class="card-placeholder card-10 border-2 border-stone-300 bg-stone-200 rounded-lg flex items-center justify-center font-bold text-2xl text-stone-500">
+                                    10</div>
+                                <div data-id="9"
+                                    class="card-placeholder card-9 border-2 border-stone-300 bg-stone-200 rounded-lg flex items-center justify-center font-bold text-2xl text-stone-500">
+                                    9</div>
+                                <div data-id="8"
+                                    class="card-placeholder card-8 border-2 border-stone-300 bg-stone-200 rounded-lg flex items-center justify-center font-bold text-2xl text-stone-500">
+                                    8</div>
+                                <div data-id="7"
+                                    class="card-placeholder card-7 border-2 border-stone-300 bg-stone-200 rounded-lg flex items-center justify-center font-bold text-2xl text-stone-500">
+                                    7</div>
                             </div>
                         </div>
-            
-                        <div id="info-panel" class="bg-white p-6 rounded-xl shadow-lg border border-stone-200 min-h-[500px] flex flex-col justify-center">
-                            <h2 id="info-title" class="text-2xl font-bold mb-3 text-purple-800">Guía Interactiva de la Cruz Celta</h2>
-                            <h3 id="info-position" class="text-md font-semibold text-stone-500 mb-4">Haz clic en una posición para aprender su significado.</h3>
+
+                        <div id="info-panel"
+                            class="bg-white p-6 rounded-xl shadow-lg border border-stone-200 min-h-[500px] flex flex-col justify-center">
+                            <h2 id="info-title" class="text-2xl font-bold mb-3 text-purple-800">Guía Interactiva de la
+                                Cruz Celta</h2>
+                            <h3 id="info-position" class="text-md font-semibold text-stone-500 mb-4">Haz clic en una
+                                posición para aprender su significado.</h3>
                             <p id="info-description" class="text-stone-700 leading-relaxed">
-                                La Cruz Celta es una de las tiradas de tarot más completas y utilizadas. Ofrece una visión profunda de una situación, explorando sus orígenes, desafíos, influencias externas y el resultado probable.
+                                La Cruz Celta es una de las tiradas de tarot más completas y utilizadas. Ofrece una
+                                visión profunda de una situación, explorando sus orígenes, desafíos, influencias
+                                externas y el resultado probable.
                             </p>
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
         </section>
 
         <section id="lectura-frio" class="scroll-mt-24 p-6 bg-white rounded-xl shadow-lg">
             <h2 class="text-4xl font-bold text-stone-900 mb-6">Lectura en Frío: El Arte de la Percepción Humana 🧠</h2>
             <p class="text-lg text-stone-700 mb-4">
-                La lectura en frío es una habilidad psicológica, no sobrenatural, que permite a un practicante hablar con una persona desconocida de tal manera que parece conocerla de toda la vida. Se basa en la observación aguda, la comunicación persuasiva y una profunda comprensión de la psicología humana.
+                La lectura en frío es una habilidad psicológica, no sobrenatural, que permite a un practicante hablar
+                con una persona desconocida de tal manera que parece conocerla de toda la vida. Se basa en la
+                observación aguda, la comunicación persuasiva y una profunda comprensión de la psicología humana.
             </p>
             <p class="text-lg text-stone-700 mb-4">
-                Su propósito fundamental es crear la ilusión de un conocimiento profundo sobre el sujeto, utilizada en entretenimiento, persuasión y, lamentablemente, para el engaño.
+                Su propósito fundamental es crear la ilusión de un conocimiento profundo sobre el sujeto, utilizada en
+                entretenimiento, persuasión y, lamentablemente, para el engaño.
             </p>
 
-            <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-8">Fundamentos Psicológicos de la Lectura en Frío 🔬</h3>
+            <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-8">Fundamentos Psicológicos de la Lectura en Frío
+                🔬</h3>
             <ul class="list-disc list-inside text-lg text-stone-700 space-y-2 mb-4">
-                <li><strong class="text-stone-900">El Efecto Forer (Declaraciones Barnum):</strong> Afirmaciones vagas y generales que parecen personalizadas, pero se aplican a la mayoría de las personas. La mente humana busca patrones y significado, validando internamente la información.</li>
-                <li><strong class="text-stone-900">Sesgo de Confirmación y Validación Subjetiva:</strong> Tendencia a buscar, interpretar y recordar información que confirme creencias preexistentes, ignorando o minimizando los "desaciertos". El sujeto participa activamente en la construcción del "acierto".</li>
-                <li><strong class="text-stone-900">La Kinésica y la Observación Detallada:</strong> Recopilación meticulosa de información a través del lenguaje corporal (postura, gestos, microexpresiones) y otros indicadores visuales. El lector "calibra" sus juicios en tiempo real.</li>
-                <li><strong class="text-stone-900">El Poder de la Sugestión y la PNL:</b> La forma en que se enmarcan las declaraciones y el lenguaje utilizado influyen en la receptividad. Redacciones positivas y halagos construyen rapport y predisponen al sujeto a la aceptación.</li>
+                <li><strong class="text-stone-900">El Efecto Forer (Declaraciones Barnum):</strong> Afirmaciones vagas y
+                    generales que parecen personalizadas, pero se aplican a la mayoría de las personas. La mente humana
+                    busca patrones y significado, validando internamente la información.</li>
+                <li><strong class="text-stone-900">Sesgo de Confirmación y Validación Subjetiva:</strong> Tendencia a
+                    buscar, interpretar y recordar información que confirme creencias preexistentes, ignorando o
+                    minimizando los "desaciertos". El sujeto participa activamente en la construcción del "acierto".
+                </li>
+                <li><strong class="text-stone-900">La Kinésica y la Observación Detallada:</strong> Recopilación
+                    meticulosa de información a través del lenguaje corporal (postura, gestos, microexpresiones) y otros
+                    indicadores visuales. El lector "calibra" sus juicios en tiempo real.</li>
+                <li><strong class="text-stone-900">El Poder de la Sugestión y la PNL:</b> La forma en que se enmarcan
+                        las declaraciones y el lenguaje utilizado influyen en la receptividad. Redacciones positivas y
+                        halagos construyen rapport y predisponen al sujeto a la aceptación.</li>
             </ul>
 
-            <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-12">Técnicas Clave de la Lectura en Frío (Enfoque de Ian Rowland) 🕵️‍♂️</h3>
+            <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-12">Técnicas Clave de la Lectura en Frío (Enfoque
+                de Ian Rowland) 🕵️‍♂️</h3>
             <ul class="list-disc list-inside text-lg text-stone-700 space-y-2 mb-4">
-                <li><strong class="text-stone-900">Shotgunning:</strong> Lanzar una serie de afirmaciones vagas y amplias, esperando que algunas resuenen con la audiencia. Cuando una "acierta", el lector se enfoca y profundiza en ella.</li>
-                <li><strong class="text-stone-900">El Truco del Arcoíris (Rainbow Ruse):</strong> Atribuir un rasgo de personalidad al sujeto e inmediatamente su opuesto, creando una afirmación universalmente aplicable pero que se siente profundamente personal.</li>
-                <li><strong class="text-stone-900">Halagos Delicados (Fine Flattery):</strong> Hacer declaraciones positivas sobre virtudes universalmente deseables para construir rapport y fomentar la aceptación.</li>
-                <li><strong class="text-stone-900">Parafraseo y Repetición:</strong> Repetir la información proporcionada por el sujeto, parafraseándola, para dar la impresión de conocimiento previo y explotar la "amnesia de la fuente".</li>
-                <li><strong class="text-stone-900">Manejo de Aciertos y Desaciertos:</strong> Capitalizar rápidamente los "aciertos" y redirigir o culpar al sujeto por los "desaciertos" para mantener la ilusión de la habilidad.</li>
-                <li><strong class="text-stone-900">Estrategias de "Set Up":</strong> Creación de una atmósfera propicia y un fuerte rapport con el sujeto, a través de saludos cálidos, actitud optimista y comunicación ligera.</li>
-                <li><strong class="text-stone-900">Puntos de Presentación:</strong> Uso estratégico de la voz (tono, ritmo), contacto visual apropiado y lenguaje corporal abierto para transmitir confianza y autoridad. Declaraciones condicionales que permiten flexibilidad.</li>
+                <li><strong class="text-stone-900">Shotgunning:</strong> Lanzar una serie de afirmaciones vagas y
+                    amplias, esperando que algunas resuenen con la audiencia. Cuando una "acierta", el lector se enfoca
+                    y profundiza en ella.</li>
+                <li><strong class="text-stone-900">El Truco del Arcoíris (Rainbow Ruse):</strong> Atribuir un rasgo de
+                    personalidad al sujeto e inmediatamente su opuesto, creando una afirmación universalmente aplicable
+                    pero que se siente profundamente personal.</li>
+                <li><strong class="text-stone-900">Halagos Delicados (Fine Flattery):</strong> Hacer declaraciones
+                    positivas sobre virtudes universalmente deseables para construir rapport y fomentar la aceptación.
+                </li>
+                <li><strong class="text-stone-900">Parafraseo y Repetición:</strong> Repetir la información
+                    proporcionada por el sujeto, parafraseándola, para dar la impresión de conocimiento previo y
+                    explotar la "amnesia de la fuente".</li>
+                <li><strong class="text-stone-900">Manejo de Aciertos y Desaciertos:</strong> Capitalizar rápidamente
+                    los "aciertos" y redirigir o culpar al sujeto por los "desaciertos" para mantener la ilusión de la
+                    habilidad.</li>
+                <li><strong class="text-stone-900">Estrategias de "Set Up":</strong> Creación de una atmósfera propicia
+                    y un fuerte rapport con el sujeto, a través de saludos cálidos, actitud optimista y comunicación
+                    ligera.</li>
+                <li><strong class="text-stone-900">Puntos de Presentación:</strong> Uso estratégico de la voz (tono,
+                    ritmo), contacto visual apropiado y lenguaje corporal abierto para transmitir confianza y autoridad.
+                    Declaraciones condicionales que permiten flexibilidad.</li>
             </ul>
 
-            <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-12">De la Lectura en Frío a la "Lectura Mental" (Innovación de Kenton Knepper) ✨</h3>
+            <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-12">De la Lectura en Frío a la "Lectura Mental"
+                (Innovación de Kenton Knepper) ✨</h3>
             <p class="text-lg text-stone-700 mb-4">
-                Kenton Knepper propuso una evolución, distanciándose de la "psíquica" tradicional para crear una habilidad de "lectura mental" más creíble.
+                Kenton Knepper propuso una evolución, distanciándose de la "psíquica" tradicional para crear una
+                habilidad de "lectura mental" más creíble.
             </p>
             <ul class="list-disc list-inside text-lg text-stone-700 space-y-2 mb-4">
-                <li><strong class="text-stone-900">Filosofía:</strong> Hacer que el mentalismo sea percibido como una habilidad genuina de "escanear" pensamientos y sentimientos, eliminando las connotaciones negativas de la adivinación.</li>
-                <li><strong class="text-stone-900">Principio de "Saber" vs. "Preguntar":</strong> Eliminar la necesidad de preguntar directamente al participante, creando una experiencia donde el mentalista "simplemente sabe" la información, reforzando la ilusión de conocimiento directo.</li>
-                <li><strong class="text-stone-900">Estructuras "Anti-Consejo":</strong> No ofrecer interpretaciones directas o consejos de vida, devolviendo la interpretación o decisión final al participante. Esto mitiga riesgos éticos y empodera al sujeto.</li>
-                <li><strong class="text-stone-900">Técnicas de Ajuste Mental:</strong> Recolección sutil de información a través de múltiples sentidos (visión periférica en superficies reflectantes, sombras, sonidos, sensaciones físicas), creando una percepción multisensorial que parece inexplicable para el público.</li>
+                <li><strong class="text-stone-900">Filosofía:</strong> Hacer que el mentalismo sea percibido como una
+                    habilidad genuina de "escanear" pensamientos y sentimientos, eliminando las connotaciones negativas
+                    de la adivinación.</li>
+                <li><strong class="text-stone-900">Principio de "Saber" vs. "Preguntar":</strong> Eliminar la necesidad
+                    de preguntar directamente al participante, creando una experiencia donde el mentalista "simplemente
+                    sabe" la información, reforzando la ilusión de conocimiento directo.</li>
+                <li><strong class="text-stone-900">Estructuras "Anti-Consejo":</strong> No ofrecer interpretaciones
+                    directas o consejos de vida, devolviendo la interpretación o decisión final al participante. Esto
+                    mitiga riesgos éticos y empodera al sujeto.</li>
+                <li><strong class="text-stone-900">Técnicas de Ajuste Mental:</strong> Recolección sutil de información
+                    a través de múltiples sentidos (visión periférica en superficies reflectantes, sombras, sonidos,
+                    sensaciones físicas), creando una percepción multisensorial que parece inexplicable para el público.
+                </li>
             </ul>
 
-            <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-12">Aplicaciones de la Lectura en Frío en Diversos Contextos 🎭💼</h3>
+            <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-12">Aplicaciones de la Lectura en Frío en Diversos
+                Contextos 🎭💼</h3>
             <ul class="list-disc list-inside text-lg text-stone-700 space-y-2 mb-4">
-                <li><strong class="text-stone-900">En el Entretenimiento:</strong> Indispensable en mentalismo, magia y espectáculos psíquicos para crear la ilusión de habilidades sobrenaturales. Es versátil, no requiere accesorios y genera un gran impacto.</li>
-                <li><strong class="text-stone-900">En la Persuasión y Comunicación:</strong> Mejora la conexión en ventas, negociación y liderazgo. Permite establecer rapport, comprender necesidades no expresadas y adaptar la comunicación.</li>
-                <li><strong class="text-stone-900">En la Terapia y el Rapport (uso delicado):</strong> Los principios de rapport son esenciales para construir confianza con pacientes. Sin embargo, su uso debe ser ético, evitando la manipulación y el rol de "adivino".</li>
-                <li><strong class="text-stone-900">Casos de Uso Inapropiado: Fraude, Estafas y Manipulación:</strong> La capacidad de crear una ilusión de conocimiento profundo la convierte en una herramienta potente para el fraude en adivinación, estafas laborales o digitales, explotando la vulnerabilidad humana.</li>
+                <li><strong class="text-stone-900">En el Entretenimiento:</strong> Indispensable en mentalismo, magia y
+                    espectáculos psíquicos para crear la ilusión de habilidades sobrenaturales. Es versátil, no requiere
+                    accesorios y genera un gran impacto.</li>
+                <li><strong class="text-stone-900">En la Persuasión y Comunicación:</strong> Mejora la conexión en
+                    ventas, negociación y liderazgo. Permite establecer rapport, comprender necesidades no expresadas y
+                    adaptar la comunicación.</li>
+                <li><strong class="text-stone-900">En la Terapia y el Rapport (uso delicado):</strong> Los principios de
+                    rapport son esenciales para construir confianza con pacientes. Sin embargo, su uso debe ser ético,
+                    evitando la manipulación y el rol de "adivino".</li>
+                <li><strong class="text-stone-900">Casos de Uso Inapropiado: Fraude, Estafas y Manipulación:</strong> La
+                    capacidad de crear una ilusión de conocimiento profundo la convierte en una herramienta potente para
+                    el fraude en adivinación, estafas laborales o digitales, explotando la vulnerabilidad humana.</li>
             </ul>
 
-            <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-12">Ética y Responsabilidad en la Práctica de la Lectura en Frío ⚖️</h3>
+            <h3 class="text-2xl font-semibold text-purple-800 mb-4 mt-12">Ética y Responsabilidad en la Práctica de la
+                Lectura en Frío ⚖️</h3>
             <p class="text-lg text-stone-700 mb-4">
-                La lectura en frío conlleva una profunda dimensión ética. Su práctica responsable es crucial para evitar el engaño y el daño.
+                La lectura en frío conlleva una profunda dimensión ética. Su práctica responsable es crucial para evitar
+                el engaño y el daño.
             </p>
             <ul class="list-disc list-inside text-lg text-stone-700 space-y-2 mb-4">
-                <li><strong class="text-stone-900">Transparencia:</strong> El público debe saber que es una habilidad psicológica, no sobrenatural. Los mentalistas éticos deben ser explícitos.</li>
-                <li><strong class="text-stone-900">Consentimiento Informado:</strong> Los sujetos deben entender que participan en una demostración de habilidades psicológicas.</li>
-                <li><strong class="text-stone-900">Evitar Dar Consejos de Vida:</strong> No ofrecer consejos que afecten significativamente la vida de las personas si no se tiene cualificación profesional.</li>
-                <li><strong class="text-stone-900">Enfoque en Entretenimiento y Reflexión:</strong> El objetivo principal debe ser entretener, estimular la reflexión sobre la psicología humana y generar asombro, no explotar la vulnerabilidad.</li>
-                <li><strong class="text-stone-900">Promoción del Pensamiento Crítico:</strong> Utilizar la plataforma para educar al público sobre sesgos cognitivos y desmitificar otras formas de engaño.</li>
+                <li><strong class="text-stone-900">Transparencia:</strong> El público debe saber que es una habilidad
+                    psicológica, no sobrenatural. Los mentalistas éticos deben ser explícitos.</li>
+                <li><strong class="text-stone-900">Consentimiento Informado:</strong> Los sujetos deben entender que
+                    participan en una demostración de habilidades psicológicas.</li>
+                <li><strong class="text-stone-900">Evitar Dar Consejos de Vida:</strong> No ofrecer consejos que afecten
+                    significativamente la vida de las personas si no se tiene cualificación profesional.</li>
+                <li><strong class="text-stone-900">Enfoque en Entretenimiento y Reflexión:</strong> El objetivo
+                    principal debe ser entretener, estimular la reflexión sobre la psicología humana y generar asombro,
+                    no explotar la vulnerabilidad.</li>
+                <li><strong class="text-stone-900">Promoción del Pensamiento Crítico:</strong> Utilizar la plataforma
+                    para educar al público sobre sesgos cognitivos y desmitificar otras formas de engaño.</li>
             </ul>
         </section>
 
@@ -1018,94 +1329,138 @@
 
         // Data for Major Arcana
         const majorArcanaData = [
-            { id: '0', name: 'El Loco', number: '0', emoji: '🤪', planetarySign: 'Urano', yesNo: 'SÍ',
+            {
+                id: '0', name: 'El Loco', number: '0', emoji: '🤪', planetarySign: 'Urano', yesNo: 'SÍ',
                 upright: { description: 'Es una carta de nuevos comienzos, aventura y viaje. Describe a alguien joven de corazón, fun y espontáneo. También simboliza dar un salto de fe o ser demasiado confiado.', keywords: 'Aventura, Nuevos comienzos, Diversión, Salto de fe, Viajes, Juventud y libertad, Inocencia.' },
                 reversed: { description: 'Describe a alguien descuidado, que toma decisiones sin pensar. También puede describir a alguien mentalmente inestable. Puede significar falta de diversión en tu vida.', keywords: 'Descuido, Error tonto, Inmadurez, Distracciones, Desperdicio de energía, Falta de diversión.' },
-                heroJourney: 'El Loco es el protagonista arquetípico que da el primer paso en la aventura, a menudo sin un plan claro, movido por un impulso interno o una llamada. Es la "llamada a la aventura".', commentary: 'Ah, El Loco. Ese espíritu libre que todos quisiéramos ser... hasta que recordamos que las facturas existen y los precipicios, bueno, suelen tener un final abrupto. Pero, ¿quién puede resistirse a esa pizca de divina locura?' },
-            { id: '1', name: 'El Mago', number: 'I', emoji: '🎩', planetarySign: 'Mercurio', yesNo: 'SÍ',
+                heroJourney: 'El Loco es el protagonista arquetípico que da el primer paso en la aventura, a menudo sin un plan claro, movido por un impulso interno o una llamada. Es la "llamada a la aventura".', commentary: 'Ah, El Loco. Ese espíritu libre que todos quisiéramos ser... hasta que recordamos que las facturas existen y los precipicios, bueno, suelen tener un final abrupto. Pero, ¿quién puede resistirse a esa pizca de divina locura?'
+            },
+            {
+                id: '1', name: 'El Mago', number: 'I', emoji: '🎩', planetarySign: 'Mercurio', yesNo: 'SÍ',
                 upright: { description: 'Indica que tienes el poder de manifestar la vida que deseas. Describe a alguien con todo el conocimiento y habilidad para lograr lo que quiera si cree en sí mismo. También puede describir a alguien que practica magia.', keywords: 'Manifestación, Poderes psíquicos, Intelecto, Nuevo comienzo, Tomar acción, Habilidades, Concentración.' },
                 reversed: { description: 'Se refiere a alguien manipulador y embaucador. También puede simbolizar codicia o falta de claridad mental. Puede indicar que no confías en tus habilidades y capacidades.', keywords: 'Manipulación, Engañador, Habilidades no utilizadas, Potencial desperdiciado, Falta de claridad mental, No confiable.' },
-                heroJourney: 'Después de la llamada de El Loco, El Mago representa el momento en que el héroe toma conciencia de sus propias capacidades y de las herramientas que tiene a su disposición para enfrentar el viaje. Es el descubrimiento del potencial.', commentary: 'El Mago, ese eterno optimista con todas las herramientas sobre la mesa. La pregunta es, ¿sabrá usarlas o solo está presumiendo para su perfil de Instagram esotérico?' },
-            { id: '2', name: 'La Suma Sacerdotisa', number: 'II', emoji: '🤫', planetarySign: 'Luna', yesNo: 'SÍ',
+                heroJourney: 'Después de la llamada de El Loco, El Mago representa el momento en que el héroe toma conciencia de sus propias capacidades y de las herramientas que tiene a su disposición para enfrentar el viaje. Es el descubrimiento del potencial.', commentary: 'El Mago, ese eterno optimista con todas las herramientas sobre la mesa. La pregunta es, ¿sabrá usarlas o solo está presumiendo para su perfil de Instagram esotérico?'
+            },
+            {
+                id: '2', name: 'La Suma Sacerdotisa', number: 'II', emoji: '🤫', planetarySign: 'Luna', yesNo: 'SÍ',
                 upright: { description: 'Describe a alguien altamente intuitivo y secreto; puede practicar magia o ser un vidente. Indica que necesitas confiar más en tu intuición y prestar atención a tus sueños y señales del universo.', keywords: 'Confía en tu intuición, Espiritualidad, Secreto/misterio, Equilibrio, Enfrenta tus sombras, Poder femenino oscuro.' },
                 reversed: { description: 'Significa que no estás escuchando tu intuición o que puedes estar descuidando tus propias necesidades para cuidar de otros. Describe a una persona engañosa que oculta sus verdaderas intenciones.', keywords: 'Intuición bloqueada, Falta de confianza en uno mismo, Juicio incorrecto, Deshonestidad, Aislamiento, Atención no deseada.' },
-                heroJourney: 'La Sacerdotisa representa la guía intuitiva y el conocimiento oculto que el héroe necesita. Es la etapa de introspección y conexión con la sabiduría interior antes de emprender acciones externas significativas.', commentary: 'Ella guarda secretos, sí, pero a veces una se pregunta si no disfruta un poquito demasiado haciéndose la misteriosa. Y ese velo... ¿qué esconderá detrás que sea tan interesante?' },
-            { id: '3', name: 'La Emperatriz', number: 'III', emoji: '👸', planetarySign: 'Venus', yesNo: 'SÍ',
+                heroJourney: 'La Sacerdotisa representa la guía intuitiva y el conocimiento oculto que el héroe necesita. Es la etapa de introspección y conexión con la sabiduría interior antes de emprender acciones externas significativas.', commentary: 'Ella guarda secretos, sí, pero a veces una se pregunta si no disfruta un poquito demasiado haciéndose la misteriosa. Y ese velo... ¿qué esconderá detrás que sea tan interesante?'
+            },
+            {
+                id: '3', name: 'La Emperatriz', number: 'III', emoji: '👸', planetarySign: 'Venus', yesNo: 'SÍ',
                 upright: { description: 'Es una carta positiva que simboliza crecimiento, bienestar y lujo. Fomenta el amor propio y la creación de vida, negocios y romance. Es un símbolo de amor mutuo y encarna el arquetipo de la madre.', keywords: 'Crecimiento, Belleza, Amor mutuo, Primavera, Lujo, Embarazo, Figura materna.' },
                 reversed: { description: 'Indica lo opuesto a las cualidades anteriores. Puede describir una mentalidad de carencia, familiares y amigos que no apoyan, o tus inseguridades y falta de amor propio.', keywords: 'Desacuerdos, Falta de abundancia, Embarazo no deseado, Enfermedad, Negligencia, Problemas con la madre.' },
-                heroJourney: 'La Emperatriz simboliza la fase del viaje en la que las ideas y proyectos del héroe comienzan a tomar forma y a florecer en el mundo físico. Es el encuentro con la energía nutricia y creativa.', commentary: 'La abundancia hecha carta. Ideal si te sale en una tirada sobre finanzas, un poco más complicado si estás intentando ponerte a dieta. Ella es la madre tierra, ¡y a veces la madre tierra quiere que te comas ese pastel!' },
-            { id: '4', name: 'El Emperador', number: 'IV', emoji: '👑', zodiacSign: 'Aries', yesNo: 'MAYORMENTE SÍ',
+                heroJourney: 'La Emperatriz simboliza la fase del viaje en la que las ideas y proyectos del héroe comienzan a tomar forma y a florecer en el mundo físico. Es el encuentro con la energía nutricia y creativa.', commentary: 'La abundancia hecha carta. Ideal si te sale en una tirada sobre finanzas, un poco más complicado si estás intentando ponerte a dieta. Ella es la madre tierra, ¡y a veces la madre tierra quiere que te comas ese pastel!'
+            },
+            {
+                id: '4', name: 'El Emperador', number: 'IV', emoji: '👑', zodiacSign: 'Aries', yesNo: 'MAYORMENTE SÍ',
                 upright: { description: 'La contraparte masculina de la emperatriz. Generalmente describe a una persona de poder que apenas muestra sus sentimientos. Están en control, trayendo orden y estructura. También encarna el arquetipo del padre.', keywords: 'Liderazgo, Éxito material, Control, Autoridad, Figura paterna.' },
                 reversed: { description: 'Significa abuso de poder, maltrato, falta de empatía o una persona machista. Alternativamente, describe cobardía y eludiendo tu poder. También puede describir a un padre abusivo.', keywords: 'Abuso de poder, Cobardía, Machista, Falta de disciplina, Mal jefe, Problemas con el padre.' },
-                heroJourney: 'El Emperador representa la necesidad de estructura, disciplina y control en el viaje del héroe. Es la etapa en la que se deben establecer límites, tomar decisiones firmes y construir una base sólida para el futuro.', commentary: 'Orden, estructura, autoridad. A veces necesario, a veces un auténtico dolor de cabeza si te toca como jefe... o como suegro. El Emperador no se anda con chiquitas.' },
-            { id: '5', name: 'El Hierofante', number: 'V', emoji: '👴', zodiacSign: 'Tauro', yesNo: 'TAL VEZ',
+                heroJourney: 'El Emperador representa la necesidad de estructura, disciplina y control en el viaje del héroe. Es la etapa en la que se deben establecer límites, tomar decisiones firmes y construir una base sólida para el futuro.', commentary: 'Orden, estructura, autoridad. A veces necesario, a veces un auténtico dolor de cabeza si te toca como jefe... o como suegro. El Emperador no se anda con chiquitas.'
+            },
+            {
+                id: '5', name: 'El Hierofante', number: 'V', emoji: '👴', zodiacSign: 'Tauro', yesNo: 'TAL VEZ',
                 upright: { description: 'Es un líder de una comunidad, el anciano sabio, el maestro y la persona a la que acudes en busca de consejo. También pregunta qué lecciones has aprendido y representa religión, tradición y conformidad. Puede simbolizar el matrimonio.', keywords: 'Religión, Creencias tradicionales, Liderazgo, Compartir conocimiento, Ceremonias religiosas, Conformidad, Matrimonio, Maestro/mentor, Educación superior.' },
                 reversed: { description: 'Puede indicar la ruptura de ciclos generacionales y tradiciones. Describe lo opuesto al Hierofante en posición normal, lo que significa rebeldía, estar en contra de la religión o llevar un estilo de vida alternativo.', keywords: 'Romper ciclos generacionales/tradición, Desafiar la religión o la autoridad, Estilos de vida alternativos, No conformidad.' },
-                heroJourney: 'El Hierofante simboliza la búsqueda de sabiduría en fuentes establecidas. El héroe puede necesitar un mentor, un maestro o el conocimiento de la tradición para avanzar en su camino y comprender las leyes que rigen su mundo.', commentary: 'Tradición, convenciones... ¿o quizás un amable recordatorio de que no todas las reglas están para romperse, especialmente si no quieres acabar explicando cosas raras en la cena de Navidad? El Hierofante es el guardián de "cómo se han hecho siempre las cosas".' },
-            { id: '6', name: 'Los Enamorados', number: 'VI', emoji: '💞', zodiacSign: 'Géminis', yesNo: 'SÍ',
+                heroJourney: 'El Hierofante simboliza la búsqueda de sabiduría en fuentes establecidas. El héroe puede necesitar un mentor, un maestro o el conocimiento de la tradición para avanzar en su camino y comprender las leyes que rigen su mundo.', commentary: 'Tradición, convenciones... ¿o quizás un amable recordatorio de que no todas las reglas están para romperse, especialmente si no quieres acabar explicando cosas raras en la cena de Navidad? El Hierofante es el guardián de "cómo se han hecho siempre las cosas".'
+            },
+            {
+                id: '6', name: 'Los Enamorados', number: 'VI', emoji: '💞', zodiacSign: 'Géminis', yesNo: 'SÍ',
                 upright: { description: 'Es una carta de sociedad, intimidad y la unión de almas gemelas. Representa trabajar juntos hacia un objetivo compartido y la armonía en una relación amorosa. También puede representar la unión de diferentes partes de ti mismo o asociaciones comerciales.', keywords: 'Amor, Almas gemelas, Intimidad, Armonía, Elecciones, Sociedad comercial.' },
                 reversed: { description: 'Puede indicar conflicto, separación o divorcio. Puedes sentirte incapaz de conectar con algo que deseas, ya sea una persona o algo que anhelabas. También puede simbolizar malas decisiones o indecisión.', keywords: 'Separación, Divorcio, Desarmonía, Problemas de confianza, Falta de responsabilidad, Desconexión.' },
-                heroJourney: 'Los Enamorados representan un punto crucial en el viaje donde el héroe debe tomar una decisión importante, a menudo relacionada con sus valores, relaciones o el camino a seguir. Esta elección tendrá consecuencias significativas.', commentary: 'Decisiones, decisiones... y a menudo, el corazón queriendo una cosa y la cabeza, otra. El drama humano en una sola carta. Y en el RWS, con Adán, Eva y la serpiente, ¡el drama original!' },
-            { id: '7', name: 'El Carro', number: 'VII', emoji: '🐎', zodiacSign: 'Cáncer', yesNo: 'SÍ',
+                heroJourney: 'Los Enamorados representan un punto crucial en el viaje donde el héroe debe tomar una decisión importante, a menudo relacionada con sus valores, relaciones o el camino a seguir. Esta elección tendrá consecuencias significativas.', commentary: 'Decisiones, decisiones... y a menudo, el corazón queriendo una cosa y la cabeza, otra. El drama humano en una sola carta. Y en el RWS, con Adán, Eva y la serpiente, ¡el drama original!'
+            },
+            {
+                id: '7', name: 'El Carro', number: 'VII', emoji: '🐎', zodiacSign: 'Cáncer', yesNo: 'SÍ',
                 upright: { description: 'Suele ser una buena señal, ya que significa avanzar, tomar el control de tu vida y estar a cargo de ella. Te estás dirigiendo a tu destino lo más rápido posible. Representa superar obstáculos a través de la determinación, el enfoque y la fuerza de voluntad.', keywords: 'Éxito, Control, Dos aspectos opuestos trabajando juntos, Viaje, Movimiento, Superar obstáculos, Un vehículo, Un guerrero.' },
                 reversed: { description: 'Indica falta de dirección y progreso. También describe pérdidas debido a confusión o falta de atención. Alternativamente, esta carta también puede significar sentirse fuera de control.', keywords: 'Contratiempos, Falta de progreso, Falta de control, Impotencia, Fuerza, Agresión/Guerra, Venganza, Camino equivocado.' },
-                heroJourney: 'El Carro simboliza un avance significativo en el viaje del héroe, donde la determinación, la confianza y el control son clave para superar obstáculos y alcanzar metas. Es la etapa de la acción decidida y la conquista.', commentary: '¡En marcha! Pero asegúrate de que las dos esfinges (o caballos, o lo que sea que tire de tu carro existencial) tiran en la misma dirección, o acabarás dando vueltas en círculo como un principiante en una rotonda muy transitada.' },
-            { id: '8', name: 'La Fuerza', number: 'VIII', emoji: '💪', zodiacSign: 'Leo', yesNo: 'SÍ',
+                heroJourney: 'El Carro simboliza un avance significativo en el viaje del héroe, donde la determinación, la confianza y el control son clave para superar obstáculos y alcanzar metas. Es la etapa de la acción decidida y la conquista.', commentary: '¡En marcha! Pero asegúrate de que las dos esfinges (o caballos, o lo que sea que tire de tu carro existencial) tiran en la misma dirección, o acabarás dando vueltas en círculo como un principiante en una rotonda muy transitada.'
+            },
+            {
+                id: '8', name: 'La Fuerza', number: 'VIII', emoji: '💪', zodiacSign: 'Leo', yesNo: 'SÍ',
                 upright: { description: 'Es una carta de coraje y fortaleza. Indica que uno se ha fortalecido al superar momentos difíciles. En lecturas sobre dinero, indica una posición financiera sólida. También puede significar que necesitas mucha fuerza y paciencia para lidiar con un problema determinado.', keywords: 'Fuerza interior, Poder, Paciencia, Cuidar de los demás, Confianza, Coraje.' },
                 reversed: { description: 'Se refiere a debilidad y falta de control. Tu ansiedad puede estar tomando el control de tu vida. Por otro lado, esta carta puede significar arrogancia y se refiere al ego.', keywords: 'Debilidad, Baja autoestima, Arrogancia, Falta de dulzura, Ansiedad.' },
-                heroJourney: 'La Fuerza representa la etapa en que el héroe debe dominar sus miedos internos, sus pasiones y sus instintos para poder continuar. Es la prueba del coraje y la fortaleza moral.', commentary: 'No se trata de ser Hércules, sino de esa sutileza para domar a la bestia interior... o a ese gato que se niega a bajar de la cortina. La verdadera fuerza reside en la calma, no en el grito.' },
-            { id: '9', name: 'El Ermitaño', number: 'IX', emoji: '🧘‍♂️', zodiacSign: 'Virgo', yesNo: 'NEUTRAL',
+                heroJourney: 'La Fuerza representa la etapa en que el héroe debe dominar sus miedos internos, sus pasiones y sus instintos para poder continuar. Es la prueba del coraje y la fortaleza moral.', commentary: 'No se trata de ser Hércules, sino de esa sutileza para domar a la bestia interior... o a ese gato que se niega a bajar de la cortina. La verdadera fuerza reside en la calma, no en el grito.'
+            },
+            {
+                id: '9', name: 'El Ermitaño', number: 'IX', emoji: '🧘‍♂️', zodiacSign: 'Virgo', yesNo: 'NEUTRAL',
                 upright: { description: 'A menudo significa introspección, tomar un tiempo a solas para escuchar tu guía interior, soledad e introversión. A veces puede referirse a culparse a sí mismo por algo y sentir culpa. También significa que la guía y la ayuda están aquí.', keywords: 'Introspección, Soledad, Sabiduría interior, Guía, Autoevaluación, Culpa.' },
                 reversed: { description: 'Sugiere que estás ignorando las señales a tu alrededor y la sabiduría que se te ofrece. En algunas lecturas, indica que la culpa se ha trasladado hacia ti. También puede significar que tú o alguien se siente solo y aislado.', keywords: 'Ignorar las señales, No asumir responsabilidades, Soledad y aislamiento, Traición, Paranoia.' },
-                heroJourney: 'El Ermitaño simboliza la etapa en que el héroe se retira del mundo para buscar la sabiduría interior, reflexionar sobre su viaje y encontrar su propia luz. Es un momento de introspección y guía interna.', commentary: 'A veces, la mejor compañía es una linterna y tus propios pensamientos. Otras veces, solo estás evitando lavar los platos. El Ermitaño sabe la diferencia... ¿o no?' },
-            { id: '10', name: 'La Rueda de la Fortuna', number: 'X', emoji: '🎡', planetarySign: 'Júpiter', yesNo: 'SÍ',
+                heroJourney: 'El Ermitaño simboliza la etapa en que el héroe se retira del mundo para buscar la sabiduría interior, reflexionar sobre su viaje y encontrar su propia luz. Es un momento de introspección y guía interna.', commentary: 'A veces, la mejor compañía es una linterna y tus propios pensamientos. Otras veces, solo estás evitando lavar los platos. El Ermitaño sabe la diferencia... ¿o no?'
+            },
+            {
+                id: '10', name: 'La Rueda de la Fortuna', number: 'X', emoji: '🎡', planetarySign: 'Júpiter', yesNo: 'SÍ',
                 upright: { description: 'Una de las cartas más afortunadas del mazo. Indica un cambio positivo en la situación. Puede referirse al karma y a los ciclos de vida.', keywords: 'Buena suerte, Ciclos, Cambio positivo, Eventos kármicos, Destino.' },
                 reversed: { description: 'Puede indicar eventos desafortunados, pérdidas o que la situación puede terminar mal. También puede significar que estás evitando tu destino al negarte a hacer los cambios necesarios.', keywords: 'Mala suerte, Cambio desagradable, Contratiempos, Retrasos.' },
-                heroJourney: 'La Rueda de la Fortuna representa los cambios inevitables y los ciclos de la vida que el héroe debe enfrentar. Es el cruce del umbral hacia un nuevo ciclo transformador, donde la suerte puede cambiar en cualquier momento.', commentary: 'Arriba y abajo, así es la vida. Cuando estés arriba, no te olvides del cinturón de seguridad para la bajada. Y cuando estés abajo, recuerda que la rueda siempre sigue girando. ¡Qué consuelo!' },
-            { id: '11', name: 'La Justicia', number: 'XI', emoji: '⚖️', zodiacSign: 'Libra', yesNo: 'NEUTRAL',
+                heroJourney: 'La Rueda de la Fortuna representa los cambios inevitables y los ciclos de la vida que el héroe debe enfrentar. Es el cruce del umbral hacia un nuevo ciclo transformador, donde la suerte puede cambiar en cualquier momento.', commentary: 'Arriba y abajo, así es la vida. Cuando estés arriba, no te olvides del cinturón de seguridad para la bajada. Y cuando estés abajo, recuerda que la rueda siempre sigue girando. ¡Qué consuelo!'
+            },
+            {
+                id: '11', name: 'La Justicia', number: 'XI', emoji: '⚖️', zodiacSign: 'Libra', yesNo: 'NEUTRAL',
                 upright: { description: 'Nos dice que ninguna acción mala pasará desapercibida. Se refiere al karma, la honestidad y la ley de causa y efecto. En lecturas sobre casos judiciales, indica que esperemos que las cosas salgan a nuestro favor. También puede referirse a la ley o a las consecuencias de nuestras acciones.', keywords: 'Un resultado justo, Honestidad, Karma, Casos judiciales, Ley, Consecuencias.' },
                 reversed: { description: 'Indica que la situación es injusta. También puede indicar retrasos, pérdidas en asuntos legales y el pago de tu deuda kármica.', keywords: 'Injusticia, Pérdida en asuntos legales, Deuda kármica, Retrasos, Falta de responsabilidad, Deshonestidad.' },
-                heroJourney: 'La Justicia representa un punto en el que el héroe debe enfrentar las consecuencias de sus acciones, tomar decisiones basadas en la verdad y la equidad, y comprender las leyes universales de causa y efecto.', commentary: 'Causa y efecto, querido. Lo que siembras, cosechas. Y sí, eso también aplica a ese último trozo de tarta que te comiste a escondidas. La Justicia lo ve todo... y su balanza no miente.' },
-            { id: '12', name: 'El Colgado', number: 'XII', emoji: '🙃', planetarySign: 'Neptuno', yesNo: 'NEUTRAL',
+                heroJourney: 'La Justicia representa un punto en el que el héroe debe enfrentar las consecuencias de sus acciones, tomar decisiones basadas en la verdad y la equidad, y comprender las leyes universales de causa y efecto.', commentary: 'Causa y efecto, querido. Lo que siembras, cosechas. Y sí, eso también aplica a ese último trozo de tarta que te comiste a escondidas. La Justicia lo ve todo... y su balanza no miente.'
+            },
+            {
+                id: '12', name: 'El Colgado', number: 'XII', emoji: '🙃', planetarySign: 'Neptuno', yesNo: 'NEUTRAL',
                 upright: { description: 'Sugiere que puedes estar atrapado en una situación con la que no estás contento. Sin embargo, tienes el poder de liberarte al mirar la situación desde una perspectiva diferente. También puede representar incertidumbre sobre un camino o un sacrificio que debe hacerse.', keywords: 'Sentirse atrapado, Incertidumbre, Cambiar tu perspectiva, Creencias autolimitantes, Sacrificio, Dejar ir.' },
                 reversed: { description: 'Puede indicar que estás tratando de distraerte de una situación con la que no estás contento saltando de un patrón negativo al siguiente. Puedes estar retrasando una decisión o sentir que los sacrificios que has hecho no tuvieron resultado. Alternativamente, puede indicar una negativa a dejar ir.', keywords: 'Desinterés, Negarse a dejar ir, Apatía, Desapego, Estancamiento, Patrones negativos.' },
-                heroJourney: 'El Colgado representa un momento de crisis, sacrificio o rendición en el viaje del héroe. Es una pausa necesaria para obtener una nueva comprensión o perspectiva antes de poder continuar, a menudo implicando dejar go viejas creencias o apegos.', commentary: 'Ver el mundo desde otra perspectiva puede ser revelador... o simplemente darte torticolis. Depende de cuánto tiempo te quedes así. A veces, para avanzar, primero hay que detenerse y colgar un rato.' },
-            { id: '13', name: 'La Muerte', number: 'XIII', emoji: '💀', zodiacSign: 'Escorpio', yesNo: 'NO',
+                heroJourney: 'El Colgado representa un momento de crisis, sacrificio o rendición en el viaje del héroe. Es una pausa necesaria para obtener una nueva comprensión o perspectiva antes de poder continuar, a menudo implicando dejar go viejas creencias o apegos.', commentary: 'Ver el mundo desde otra perspectiva puede ser revelador... o simplemente darte torticolis. Depende de cuánto tiempo te quedes así. A veces, para avanzar, primero hay que detenerse y colgar un rato.'
+            },
+            {
+                id: '13', name: 'La Muerte', number: 'XIII', emoji: '💀', zodiacSign: 'Escorpio', yesNo: 'NO',
                 upright: { description: 'Describe una transformación en tu vida. Generalmente representa el final de un viejo capítulo y el comienzo de uno nuevo o la muerte de viejas versiones de uno mismo. También puede representar una pérdida.', keywords: 'Transformación, Cambio, Un final y un comienzo, Renacimiento, Pérdida.' },
                 reversed: { description: 'Sugiere que estás resistiendo el cambio. Cuando ocurre un final, necesitas tomarte un tiempo para lamentarlo, aceptar la situación y seguir adelante. Esta carta puede representar estar atrapado en viejos hábitos y miedo al cambio.', keywords: 'Resistir el cambio, Incapacidad de avanzar, Miedo a dejar ir, Repetición de patrones negativos.' },
-                heroJourney: 'La Muerte representa la "cueva profunda y la confrontación" o la "noche oscura del alma" del héroe. Es una etapa de transformación radical donde el héroe debe enfrentarse a sus miedos más profundos y dejar atrás su antiguo yo para renacer.', commentary: 'No, no es (generalmente) que te vayas a morir mañana. Es más bien el universo diciéndote con muy poca sutileza: \'Esa fase de tu vida ya dio lo que tenía que dar. Siguiente\'. Y sí, el esqueleto tiene su encanto macabro.' },
-            { id: '14', name: 'La Templanza', number: 'XIV', emoji: '🕊️', zodiacSign: 'Sagitario', yesNo: 'NEUTRAL',
+                heroJourney: 'La Muerte representa la "cueva profunda y la confrontación" o la "noche oscura del alma" del héroe. Es una etapa de transformación radical donde el héroe debe enfrentarse a sus miedos más profundos y dejar atrás su antiguo yo para renacer.', commentary: 'No, no es (generalmente) que te vayas a morir mañana. Es más bien el universo diciéndote con muy poca sutileza: \'Esa fase de tu vida ya dio lo que tenía que dar. Siguiente\'. Y sí, el esqueleto tiene su encanto macabro.'
+            },
+            {
+                id: '14', name: 'La Templanza', number: 'XIV', emoji: '🕊️', zodiacSign: 'Sagitario', yesNo: 'NEUTRAL',
                 upright: { description: 'Significa paciencia y moderación. También puede representar crecimiento interior, meditación y enraizamiento al estar en el momento presente.', keywords: 'Paciencia, Moderación, Equilibrio, Enraizamiento, Tranquilidad, Curación, Guía interior.' },
                 reversed: { description: 'Indica que una situación está desequilibrada o que quizás estás impaciente. También se refiere a la falta de enraizamiento. Necesitas estar más presente y practicar la gratitud. Es una carta de desequilibrio y exceso.', keywords: 'Impaciencia, Desequilibrio, Exceso, Imprudencia, Desarmonía.' },
-                heroJourney: 'La Templanza representa la necesidad del héroe de integrar las lecciones aprendidas, encontrar el equilibrio después de las pruebas y moderar sus energías para continuar el viaje con un sentido renovado de propósito y armonía.', commentary: 'Moderación en todas las cosas... incluyendo, a veces, la moderación misma. Un arte, más que una ciencia. El ángel de la Templanza es ese amigo que te recuerda que quizás no necesitas esa tercera copa de vino... o esa quinta.' },
-            { id: '15', name: 'El Diablo', number: 'XV', emoji: '😈', zodiacSign: 'Capricornio', yesNo: 'NO',
+                heroJourney: 'La Templanza representa la necesidad del héroe de integrar las lecciones aprendidas, encontrar el equilibrio después de las pruebas y moderar sus energías para continuar el viaje con un sentido renovado de propósito y armonía.', commentary: 'Moderación en todas las cosas... incluyendo, a veces, la moderación misma. Un arte, más que una ciencia. El ángel de la Templanza es ese amigo que te recuerda que quizás no necesitas esa tercera copa de vino... o esa quinta.'
+            },
+            {
+                id: '15', name: 'El Diablo', number: 'XV', emoji: '😈', zodiacSign: 'Capricornio', yesNo: 'NO',
                 upright: { description: 'Indica que necesitas reevaluar tus relaciones o hábitos. Hay cosas en tu vida que te mantienen encadenado. También se refiere a personas y situaciones tóxicas de las que necesitas liberarte. Puede indicar engaño en una relación.', keywords: 'Relación tóxica, Situación tóxica, Adicción, Enfermedad mental, Engaño, Abuso, Malos hábitos, Lujuria.' },
                 reversed: { description: 'Indica que te estás liberando de las cadenas que te ataban. Esto podrían ser bloqueos mentales o una situación tóxica. Ya no te sientes atrapado y has recuperado tu poder. Describe la superación de la adicción, así como la libertad y la independencia.', keywords: 'Superar adicciones, Libertad, Romper cadenas, Independencia.' },
-                heroJourney: 'El Diablo representa el encuentro del héroe con su propia sombra, sus miedos más profundos, las tentaciones y las fuerzas que buscan desviarlo de su camino. Es una prueba de integridad y la oportunidad de liberarse de las ilusiones.', commentary: 'Ah, las tentaciones. Esas cadenas a menudo las forjamos nosotros mismos, ¿no es irónico? El Diablo te ofrece lo que crees que quieres, pero el precio suele ser tu libertad... o tu dignidad. O ambas.' },
-            { id: '16', name: 'La Torre', number: 'XVI', emoji: '⚡️', planetarySign: 'Marte', yesNo: 'NO',
+                heroJourney: 'El Diablo representa el encuentro del héroe con su propia sombra, sus miedos más profundos, las tentaciones y las fuerzas que buscan desviarlo de su camino. Es una prueba de integridad y la oportunidad de liberarse de las ilusiones.', commentary: 'Ah, las tentaciones. Esas cadenas a menudo las forjamos nosotros mismos, ¿no es irónico? El Diablo te ofrece lo que crees que quieres, pero el precio suele ser tu libertad... o tu dignidad. O ambas.'
+            },
+            {
+                id: '16', name: 'La Torre', number: 'XVI', emoji: '⚡️', planetarySign: 'Marte', yesNo: 'NO',
                 upright: { description: 'Describe caos, una destrucción total de una vieja estructura o patrón y uno nuevo tomando su lugar. Esta carta se refiere a llegar al núcleo del problema. El cambio ocurrirá pronto, repentina e inesperadamente.', keywords: 'Caos, Cambio repentino, Destrucción de lo viejo, Desastre, Pérdida, Violencia, Trauma, Accidente.' },
                 reversed: { description: 'Indica que te niegas a cambiar viejos hábitos o que estás evitando el cambio. Al hacer esto, solo estás retrasando lo inevitable.', keywords: 'Resistir el cambio, Retrasar lo inevitable, Evitar la tragedia, Negarse a cambiar.' },
-                heroJourney: 'La Torre representa un momento de cataclismo en el viaje del héroe, donde las viejas estructuras y creencias son destruidas para permitir una transformación profunda y, a menudo, dolorosa pero necesaria. Es la demolición de la "torre de marfil" de la ignorancia o el ego.', commentary: 'Cuando el universo decide que es hora de una reforma drástica en tu vida y no se molesta en pedirte permiso. ¡Agárrate! Es como una demolición controlada... pero sin el control y con más gritos.' },
-            { id: '17', name: 'La Estrella', number: 'XVII', emoji: '🌟', zodiacSign: 'Acuario', yesNo: 'SÍ',
+                heroJourney: 'La Torre representa un momento de cataclismo en el viaje del héroe, donde las viejas estructuras y creencias son destruidas para permitir una transformación profunda y, a menudo, dolorosa pero necesaria. Es la demolición de la "torre de marfil" de la ignorancia o el ego.', commentary: 'Cuando el universo decide que es hora de una reforma drástica en tu vida y no se molesta en pedirte permiso. ¡Agárrate! Es como una demolición controlada... pero sin el control y con más gritos.'
+            },
+            {
+                id: '17', name: 'La Estrella', number: 'XVII', emoji: '🌟', zodiacSign: 'Acuario', yesNo: 'SÍ',
                 upright: { description: 'Es una carta hermosa que simboliza esperanza, curación y renovación. También puede referirse a la fama, la fortuna y la popularidad, o que lo que has estado manifestando se está haciendo realidad. Un deseo hecho realidad.', keywords: 'Curación, Esperanza, Fama y riqueza, Deseos cumplidos, Armonía, Cambio positivo, Manifestación, Popularidad.' },
                 reversed: { description: 'Puede indicar que te sientes sin inspiración, sin esperanza y pesimista. Describe decepciones y que el resultado puede no ser el deseado.', keywords: 'Esperanzas perdidas, Rechazo, Pérdida, Enfocarse en lo negativo, Manifestaciones bloqueadas.' },
-                heroJourney: 'Después de la crisis de La Torre, La Estrella representa la esperanza renovada, la sanación y la guía espiritual que el héroe encuentra. Es un momento de calma, inspiración y reconexión con su propósito.', commentary: 'Esa lucecita de esperanza después de la tormenta. O la señal de que por fin encontraste las llaves que habías perdido. La Estrella nos recuerda que, incluso en la oscuridad, siempre hay algo por lo que seguir adelante.' },
-            { id: '18', name: 'La Luna', number: 'XVIII', emoji: '🌙', zodiacSign: 'Piscis', yesNo: 'NO',
+                heroJourney: 'Después de la crisis de La Torre, La Estrella representa la esperanza renovada, la sanación y la guía espiritual que el héroe encuentra. Es un momento de calma, inspiración y reconexión con su propósito.', commentary: 'Esa lucecita de esperanza después de la tormenta. O la señal de que por fin encontraste las llaves que habías perdido. La Estrella nos recuerda que, incluso en la oscuridad, siempre hay algo por lo que seguir adelante.'
+            },
+            {
+                id: '18', name: 'La Luna', number: 'XVIII', emoji: '🌙', zodiacSign: 'Piscis', yesNo: 'NO',
                 upright: { description: 'No es una carta muy positiva en el tarot, ya que significa secretos, engaño, mentiras y traición. Generalmente se refiere a lo que está oculto. Puede significar un amigo falso y mala energía en general. También puede pedirnos que prestemos atención a nuestros sueños e intuición.', keywords: 'Secretos, Infidelidad, Enemigos ocultos, Engaño, Confusión, Ilusión, Sueños, Intuición, Noche.' },
                 reversed: { description: 'Simboliza que lo que estaba oculto está saliendo a la luz. Puedes enterarte de un secreto y empezar a ver a través de la ilusión. También puede significar intuición bloqueada.', keywords: 'Revelar la verdad, Secretos expuestos, Autoengaño, Liberar el miedo, Intuición bloqueada.' },
-                heroJourney: 'La Luna representa el descenso del héroe a las profundidades del subconsciente, donde debe enfrentar sus miedos, ilusiones y la parte más oscura de su psique. Es una prueba de fe y discernimiento en un terreno incierto.', commentary: 'El reino de los sueños, las ilusiones y los miedos. A veces es mejor encender una luz... o simplemente dejar de ver películas de terror antes de dormir. La Luna nos recuerda que no todo lo que brilla (o aúlla) es de fiar.' },
-            { id: '19', name: 'El Sol', number: 'XIX', emoji: '☀️', planetarySign: 'Sol', yesNo: 'SÍ',
+                heroJourney: 'La Luna representa el descenso del héroe a las profundidades del subconsciente, donde debe enfrentar sus miedos, ilusiones y la parte más oscura de su psique. Es una prueba de fe y discernimiento en un terreno incierto.', commentary: 'El reino de los sueños, las ilusiones y los miedos. A veces es mejor encender una luz... o simplemente dejar de ver películas de terror antes de dormir. La Luna nos recuerda que no todo lo que brilla (o aúlla) es de fiar.'
+            },
+            {
+                id: '19', name: 'El Sol', number: 'XIX', emoji: '☀️', planetarySign: 'Sol', yesNo: 'SÍ',
                 upright: { description: 'Es una carta de felicidad, éxito y resultados positivos. Independientemente de su posición en una tirada, esta carta ilumina cualquier carta negativa en una lectura de tarot.', keywords: 'Felicidad, Éxito, Vitalidad, Claridad, Optimismo, Realización.' },
                 reversed: { description: 'Puede describir pesimismo o que tu felicidad se retrase. También puede referirse al ego y la arrogancia.', keywords: 'Tristeza, Expectativas poco realistas, Excesiva emoción, El ego, Arrogancia, Opresión, Embarazo fallido.' },
-                heroJourney: 'El Sol representa la iluminación, la claridad y el éxito alcanzado por el héroe después de superar las pruebas de la oscuridad. Es un momento de gran alegría, celebración y comprensión.', commentary: '¡Alegría, vitalidad, éxito! La carta que todos queremos que nos salga cuando preguntamos por el aumento de sueldo o si por fin entenderemos cómo funciona el mando de la tele. ¡Pura luz y energía positiva!' },
-            { id: '20', name: 'El Juicio', number: 'XX', emoji: '🎺', planetarySign: 'Plutón', yesNo: 'SÍ',
+                heroJourney: 'El Sol representa la iluminación, la claridad y el éxito alcanzado por el héroe después de superar las pruebas de la oscuridad. Es un momento de gran alegría, celebración y comprensión.', commentary: '¡Alegría, vitalidad, éxito! La carta que todos queremos que nos salga cuando preguntamos por el aumento de sueldo o si por fin entenderemos cómo funciona el mando de la tele. ¡Pura luz y energía positiva!'
+            },
+            {
+                id: '20', name: 'El Juicio', number: 'XX', emoji: '🎺', planetarySign: 'Plutón', yesNo: 'SÍ',
                 upright: { description: 'Puede describir un despertar espiritual y renacimiento después de un período de confusión. Este es un momento de autoevaluación y de sincerarse. Alternativamente, puede indicar un anuncio o que algo o alguien de tu pasado está regresando.', keywords: 'Renacimiento, Llamado interior, Juzgarse a uno mismo o a otros, El pasado que regresa, Ser juzgado, Perdón, Aprender de lecciones kármicas, Anuncio.' },
                 reversed: { description: 'Sugiere que estás permitiendo que el miedo te frene. También puede significar una negativa a aprender de lecciones kármicas. También puede simbolizar acusaciones falsas y chismes maliciosos. Te invita a superar el drama.', keywords: 'Chismes maliciosos, Acusaciones falsas, Falta de voluntad para aprender de lecciones kármicas, Culpa injusta, Falta de autoconciencia.' },
-                heroJourney: 'El Juicio representa el despertar espiritual del héroe, la integración de sus experiencias pasadas y la respuesta a una llamada superior. Es un momento de evaluación y preparación para la culminación del viaje.', commentary: 'El despertar, la llamada a cuentas. Como cuando suena el despertador un lunes por la mañana, pero a nivel cósmico. Hora de hacer balance y decidir si le das al botón de \'snooze\' existencial o te levantas de una vez.' },
-            { id: '21', name: 'El Mundo', number: 'XXI', emoji: '🌐', planetarySign: 'Saturno', yesNo: 'SÍ',
+                heroJourney: 'El Juicio representa el despertar espiritual del héroe, la integración de sus experiencias pasadas y la respuesta a una llamada superior. Es un momento de evaluación y preparación para la culminación del viaje.', commentary: 'El despertar, la llamada a cuentas. Como cuando suena el despertador un lunes por la mañana, pero a nivel cósmico. Hora de hacer balance y decidir si le das al botón de \'snooze\' existencial o te levantas de una vez.'
+            },
+            {
+                id: '21', name: 'El Mundo', number: 'XXI', emoji: '🌐', planetarySign: 'Saturno', yesNo: 'SÍ',
                 upright: { description: 'Representa el final del Viaje del Loco en los Arcanos Mayores. Significa que has llegado al final de un ciclo. Has enfrentado tu lado oscuro y has abrazado tu sabiduría. Es una carta muy positiva, indica el logro del éxito y la finalización de un ciclo. También puede simbolizar viajes.', keywords: 'Finalización de un ciclo, Plenitud, Logros, Éxito, Viajes, Integridad.' },
                 reversed: { description: 'Indica que no has logrado lo que te propusiste. Y las cosas se han estancado. Puede que hayas intentado tomar atajos en lugar de esforzarte para alcanzar tus metas.', keywords: 'Contratiempos, Retrasos, Falta de logros, Tareas incompletas, Estancamiento.' },
-                heroJourney: 'El Mundo representa la culminación exitosa del viaje del héroe. Es la integración de todas las lecciones aprendidas, la realización de su propósito y el retorno al mundo con una nueva conciencia y plenitud. Es el final de un gran ciclo y, a menudo, el preludio de uno nuevo.', commentary: '¡Lo lograste! Fin del ciclo, realización. Ahora, ¿a por el siguiente nivel o nos tomamos un merecido descanso? El Mundo es la prueba de que, a veces, los finales felices existen... al menos hasta que empieza la secuela.' }
+                heroJourney: 'El Mundo representa la culminación exitosa del viaje del héroe. Es la integración de todas las lecciones aprendidas, la realización de su propósito y el retorno al mundo con una nueva conciencia y plenitud. Es el final de un gran ciclo y, a menudo, el preludio de uno nuevo.', commentary: '¡Lo lograste! Fin del ciclo, realización. Ahora, ¿a por el siguiente nivel o nos tomamos un merecido descanso? El Mundo es la prueba de que, a veces, los finales felices existen... al menos hasta que empieza la secuela.'
+            }
         ];
 
         // Data for Suit types
@@ -1282,7 +1637,7 @@
                     majorReversedBtn.classList.add('bg-stone-300', 'text-stone-800');
                     majorMeaningType.textContent = 'Significado (Derecha):';
                 }
-                
+
                 majorDetailHeroJourney.textContent = card.heroJourney ? `Conexiones con el Viaje del Héroe: ${card.heroJourney}` : '';
                 majorDetailCommentary.textContent = card.commentary;
 
@@ -1391,7 +1746,7 @@
                     minorReversedBtn.classList.add('bg-stone-300', 'text-stone-800');
                     minorMeaningType.textContent = 'Significado (Derecha):';
                 }
-                
+
                 minorDetailHeroJourney.textContent = '';
                 minorDetailCommentary.textContent = card.commentary;
 
@@ -1476,9 +1831,9 @@
                     const cardId = parseInt(card.dataset.id);
 
                     celticCardPlaceholders.forEach(c => c.classList.remove('active'));
-                    
+
                     card.classList.add('active');
-                    
+
                     updateCelticInfoPanel(cardId);
                 });
             });
@@ -1487,4 +1842,5 @@
         });
     </script>
 </body>
+
 </html>
