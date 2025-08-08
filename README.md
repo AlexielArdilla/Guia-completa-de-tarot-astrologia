@@ -4,7 +4,7 @@
 
 #### Creo que está bastante buena.
 
-## LINK: https://alexielardilla.github.io/Guia-completa-de-tarot-astrologia-y-cold-reading/
+## LINK: https://alexielardilla.github.io/Guia-completa-de-tarot-astrologia/
 
 ## Saludos
 
